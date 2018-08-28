@@ -1,0 +1,43 @@
+@import 'components/variables';
+nav {
+    position: fixed;
+    z-index: 10;
+    ul {
+        a {
+            color: $main-bg-color;
+        }
+    }
+    a.brand-logo {
+        display: flex;
+        top: 3px;
+        color: $main-bg-color;
+        @media #{$medium-and-up} {
+        top: 7px;
+        }
+        @media #{$small-and-down} {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .brand-title {
+            @media #{$medium-and-up} {
+                display: inline-block
+            }   
+        }
+        .jug-logo {
+            margin-left: 8px;
+            width: 50px;
+            height: 54px;
+        }
+    }
+    ul#nav-mobile {
+        @media #{$small-and-down} {
+            background: $primary-color;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}

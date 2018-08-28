@@ -1,0 +1,10 @@
+@import 'components/variables';
+
+.talk-container {
+    padding-top: 56px;
+    .talk-header {
+        color: $primary-color;
+        padding: 10px 20px;
+        border-bottom: 1px solid #e0e0e0,
+    }   
+}
