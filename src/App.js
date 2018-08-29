@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 import { Header } from './components';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Program, Speaker, NoMatch } from './pages';
 
 class App extends Component {
 
   render() {
+    console.log('render')
     return (
-      <Router>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <div>
           <Header />
           <div className="content">
@@ -20,7 +21,7 @@ class App extends Component {
             </Switch>
           </div>
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

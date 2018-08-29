@@ -1,7 +1,7 @@
 {
   "name": "jugsummercamp",
   "version": "0.1.0",
-  "homepage": "https://guillaumesoldera.github.io/jugsummercamp",
+  "homepage": "https://guillaumesoldera.github.io/jugsummercamp/",
   "private": true,
   "dependencies": {
     "font-awesome": "^4.7.0",
