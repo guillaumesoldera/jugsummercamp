@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Component } from 'react';
 import PropTypes from 'prop-types';
 import "../styles/Schedule.css"
 import { retrieveTalks } from '../services/talks';
+import { NavLink } from "react-router-dom";
 
-class ScheduleRow extends PureComponent {
+class ScheduleRow extends Component {
 
     static propTypes = {
         talk: PropTypes.shape({
@@ -17,29 +18,28 @@ class ScheduleRow extends PureComponent {
     }
 
     onRowSelected = (e) => {
-        console.log('onClick')
         this.props.onClick(this.props.talk)
     }
 
     render() {
-        const { title, author, type, room, time} = this.props.talk;
+        const { id, title, author, type, room, time} = this.props.talk;
         return (
             <li className="collection-item">
-                <div className="schedule-item" onClick={this.onRowSelected}>
+                <NavLink to={`/program/${id}`} className="schedule-item" onClick={this.onRowSelected}>
                 <p className="title">{title}</p>
                 <p className="talk-info">
                     <span className="talk-type">{type}</span><br/>
                     <span className="talk-author">{author}</span><br />
                     <span  className="talk-room">{room}</span>&nbsp;<span className="talk-time">{time}</span>
                 </p>
-                <a href="#!" className="secondary-content"><i className="fa fa-star-o"></i></a>
-                </div>
+                <span className="secondary-content"><i className="fa fa-star-o"></i></span>
+                </NavLink>
             </li>
         )
     }
 }
 
-export class Schedule extends PureComponent {
+export class Schedule extends Component {
 
     state = {
         talks: []

@@ -1,5 +1,6 @@
 const fakeTalks = [
     {
+        id: 'developpeurs-etre-un-expert',
         title: "Développeurs, être un expert incompris ou un leader d'opinions, cela ne dépend que de nous",
         author: 'Freddy Mallet',
         type: 'Keynote',
@@ -7,6 +8,7 @@ const fakeTalks = [
         time: '09:00-10:00'
     },
     {
+        id: 'simplifiez-vous-les-mivro-services',
         title: "Simplifiez vous les micro services avec Otoroshi",
         author: 'Mathieu Ancelin',
         type: 'Conférence',
@@ -14,6 +16,7 @@ const fakeTalks = [
         time: '10:00-11:00'
     },
     {
+        id: 'maroufle-ton-css',
         title: "Maroufle ton CSS avec Flexbox et CSS-grid",
         author: 'Amélie Benoît',
         type: 'Tools in Action',
@@ -21,6 +24,7 @@ const fakeTalks = [
         time: '10:00-10:30'
     },
     {
+        id: 'les-phantom-types-pour-les-nuls',
         title: "Les 'Phantom Types' pour les nuls",
         author: 'Jean Baptiste Joffre',
         type: 'Quickie',

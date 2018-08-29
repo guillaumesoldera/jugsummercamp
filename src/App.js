@@ -1,47 +1,26 @@
-import React, { Component, Fragment } from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './styles/App.css';
-import { Header, Schedule } from './components';
-import { Talk } from './components/Talk';
-import { classSet } from './components/utils';
+import { Header } from './components';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Program, Speaker, NoMatch } from './pages';
 
 class App extends Component {
 
-  state = {
-    currentTalk: undefined,
-  }
-
-  onTalkSelected = (talk) => {
-    this.setState({
-      currentTalk: talk,
-    })
-  }
-
-  back = () => {
-    this.setState({
-      currentTalk: undefined,
-    })
-  }
-
   render() {
     return (
-      <Fragment>
-        <Header />
-        <div className={classSet({"content": true, "talk-detail": this.state.currentTalk !== undefined})}>
-          <div className="row">
-            <div className="col s12 l6">
-              <Schedule onSelect={this.onTalkSelected}/>
-            </div>
-            {
-              this.state.currentTalk && (
-                <div className="col s12 l6">
-                  <Talk talk={this.state.currentTalk} back={this.back}/>
-                </div>
-              )
-            }
+      <Router>
+        <div>
+          <Header />
+          <div className="content">
+            <Switch>
+              <Route exact path="/" component={Program} />
+              <Route path="/program/:talkId" render={({match}) => <Program talkId={match.params.talkId}/>} />
+              <Route path="/speakers" component={Speaker} />
+              <Route component={NoMatch} />
+            </Switch>
           </div>
         </div>
-      </Fragment>
+      </Router>
     );
   }
 }
