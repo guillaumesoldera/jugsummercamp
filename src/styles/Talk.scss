@@ -8,3 +8,10 @@
         border-bottom: 1px solid #e0e0e0,
     }   
 }
+.back {
+    padding: 0 20px;
+    margin-left: -20px;
+    @media #{$large-and-up} {
+        display: none;
+    }
+}

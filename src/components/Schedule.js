@@ -24,8 +24,8 @@ class ScheduleRow extends PureComponent {
     render() {
         const { title, author, type, room, time} = this.props.talk;
         return (
-            <li className="collection-item schedule-item">
-                <a href="#" onClick={this.onRowSelected}>
+            <li className="collection-item">
+                <div className="schedule-item" onClick={this.onRowSelected}>
                 <p className="title">{title}</p>
                 <p className="talk-info">
                     <span className="talk-type">{type}</span><br/>
@@ -33,7 +33,7 @@ class ScheduleRow extends PureComponent {
                     <span  className="talk-room">{room}</span>&nbsp;<span className="talk-time">{time}</span>
                 </p>
                 <a href="#!" className="secondary-content"><i className="fa fa-star-o"></i></a>
-                </a>
+                </div>
             </li>
         )
     }

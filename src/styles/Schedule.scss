@@ -19,6 +19,7 @@
         .schedule-item {
             position: relative;
             color: $secondary-color;
+            cursor: pointer;
             .secondary-content {
                 position: absolute;
                 top: 16px;

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './styles/App.css';
 import { Header, Schedule } from './components';
 import { Talk } from './components/Talk';
+import { classSet } from './components/utils';
 
 class App extends Component {
 
@@ -11,9 +12,14 @@ class App extends Component {
   }
 
   onTalkSelected = (talk) => {
-    console.log('onTalkSelect')
     this.setState({
       currentTalk: talk,
+    })
+  }
+
+  back = () => {
+    this.setState({
+      currentTalk: undefined,
     })
   }
 
@@ -21,7 +27,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <div className="content">
+        <div className={classSet({"content": true, "talk-detail": this.state.currentTalk !== undefined})}>
           <div className="row">
             <div className="col s12 l6">
               <Schedule onSelect={this.onTalkSelected}/>
@@ -29,7 +35,7 @@ class App extends Component {
             {
               this.state.currentTalk && (
                 <div className="col s12 l6">
-                  <Talk talk={this.state.currentTalk}/>
+                  <Talk talk={this.state.currentTalk} back={this.back}/>
                 </div>
               )
             }
