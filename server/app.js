@@ -4,7 +4,11 @@ const talks = require('./data/talks');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'build')));
+if (process.env.MODE === 'PROD') {
+    app.use(express.static(path.resolve(__dirname, '..', 'build')));
+} else {
+    app.use(express.static(path.join(__dirname, 'build')));
+}
 
 app.get('/api/talks', function(req, res) {
       res.setHeader('Content-Type', 'application/json')
@@ -13,7 +17,11 @@ app.get('/api/talks', function(req, res) {
 );
 
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    if (process.env.MODE === 'prod') {
+        res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    }
 });
 
 
