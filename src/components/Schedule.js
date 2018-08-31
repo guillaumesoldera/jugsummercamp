@@ -1,8 +1,7 @@
-import React, { PureComponent, Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import "../styles/Schedule.css";
 import "../styles/collections.css";
-import { retrieveTalks } from '../services/talks';
 import { NavLink } from "react-router-dom";
 
 class ScheduleRow extends Component {

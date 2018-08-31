@@ -1,4 +1,4 @@
-import React, { PureComponent, Component } from 'react';
+import React, { Component } from 'react';
 import '../styles/Speaker.css';
 import '../styles/collections.css';
 import { Speaker } from '../components';
