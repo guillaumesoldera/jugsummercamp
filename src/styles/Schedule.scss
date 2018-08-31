@@ -1,49 +1,8 @@
 @import 'components/variables';
 
 .schedule-container {
-    height: 100%;
-    margin: 0 -0.15rem;
     ul.collection {
-        border: none;
-        margin-top: 0;
-        overflow: auto;
-        max-height: calc(100% - 56px);
-        .collection-header {
-            margin-top: 56px;
-            color: $primary-color;
-            background-color: $main-bg-color;
-        }
-        .collection-item {
-            background-color: $main-bg-color;
-        }
         .schedule-item {
-            position: relative;
-            color: $secondary-color;
-            cursor: pointer;
-            display: block;
-            margin: -10px -20px -10px -30px;
-            padding: 10px 20px 10px 30px;
-            &.active {
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-            .secondary-content {
-                position: absolute;
-                top: 16px;
-                right: 16px;
-            }
-            p {
-                margin-bottom: 0.4em;
-                margin-top: 0;
-            }
-            .title {
-                display: block;
-                max-width: calc(100% - 50px);
-                font-weight: 600;
-                font-size: 16px;
-                @media #{$medium-and-up} {
-                    font-size: 18px;
-                }
-            }
             .talk-info {
                 .talk-type {
                     font-weight: 400;

@@ -1,6 +1,7 @@
 import React, { PureComponent, Component } from 'react';
 import PropTypes from 'prop-types';
-import "../styles/Schedule.css"
+import "../styles/Schedule.css";
+import "../styles/collections.css";
 import { retrieveTalks } from '../services/talks';
 import { NavLink } from "react-router-dom";
 
@@ -25,7 +26,7 @@ class ScheduleRow extends Component {
         const { id, title, author, type, room, time} = this.props.talk;
         return (
             <li className="collection-item">
-                <NavLink to={`/program/${id}`} className="schedule-item" onClick={this.onRowSelected}>
+                <NavLink to={`/program/${id}`} className="schedule-item collection-item-row" onClick={this.onRowSelected}>
                 <p className="title">{title}</p>
                 <p className="talk-info">
                     <span className="talk-type">{type}</span><br/>
@@ -57,7 +58,7 @@ export class Schedule extends Component {
 
     render() {
         return (
-            <div className="schedule-container">
+            <div className="schedule-container collections-container">
                 <ul className="collection with-header">
                     <li className="collection-header"><h4>Programme</h4></li>
                     {
