@@ -43,6 +43,12 @@
   }
 }
 .speaker-detail {
+  .collection.with-header {
+    display: none;
+    @media #{$large-and-up} {
+      display: block;
+    }
+  }
   .speakers-container {
     display: none;
     @media #{$large-and-up} {

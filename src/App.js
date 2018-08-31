@@ -14,6 +14,7 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/" component={Program} />
+              <Route exact path="/program" component={Program} />
               <Route path="/program/:talkId" render={({match}) => <Program talkId={match.params.talkId}/>} />
               <Route exact path="/speakers" component={Speakers} />
               <Route path="/speakers/:speakerId" render={({match}) => <Speakers speakerId={match.params.speakerId}/>} />

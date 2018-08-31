@@ -15,18 +15,13 @@ class ScheduleRow extends Component {
             room: PropTypes.string.isRequired,
             time: PropTypes.string.isRequired,
         }),
-        onClick: PropTypes.func.isRequired,
-    }
-
-    onRowSelected = (e) => {
-        this.props.onClick(this.props.talk)
     }
 
     render() {
         const { id, title, author, type, room, time} = this.props.talk;
         return (
             <li className="collection-item">
-                <NavLink to={`/program/${id}`} className="schedule-item collection-item-row" onClick={this.onRowSelected}>
+                <NavLink to={`/program/${id}`} className="schedule-item collection-item-row">
                 <p className="title">{title}</p>
                 <p className="talk-info">
                     <span className="talk-type">{type}</span><br/>
@@ -49,29 +44,15 @@ class ScheduleRow extends Component {
 
 export class Schedule extends Component {
 
-    state = {
-        talks: []
-    }
-
-    componentDidMount() {
-        retrieveTalks()
-            .then(talks => {
-                this.setState({
-                    talks
-                })
-            })
-    }
-
-
     render() {
         return (
             <div className="schedule-container collections-container">
                 <ul className="collection with-header">
                     <li className="collection-header"><h4>Programme</h4></li>
                     {
-                        this.state.talks.map((talk, idx) => {
+                        this.props.talks.map((talk, idx) => {
                             return (
-                                <ScheduleRow key={idx} talk={talk} onClick={this.props.onSelect}/>
+                                <ScheduleRow key={idx} talk={talk} />
                             )
                         })
                     }
