@@ -1,3 +1,32 @@
+@import "components/variables";
+
 .speakers-container {
-    //padding-top: 56px;
+    .speaker {
+        display: block;
+        &.active {
+            //box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 8px 8px 19px 0 rgba(0, 0, 0, 0.5), 4px 6px 20px 0 rgba(0, 0, 0, 0.5);
+        }
+        .card-content {
+            background-color: $speaker-color;
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+        }
+    }
+}
+
+.speaker-container {
+    .speaker-header {
+        color: $primary-color;
+        padding: 10px 20px;
+        //border-bottom: 1px solid #e0e0e0,
+    }   
+}
+.back {
+    padding: 0 20px;
+    margin-left: -20px;
+    @media #{$large-and-up} {
+        display: none;
+    }
 }

@@ -12,3 +12,15 @@ export function className(obj) {
 export function classSet(obj) {
   return Object.keys(obj).filter(k => obj[k]).join(' ');
 }
+
+export function chunk(size, list) {
+  return list.reduce((acc, curr, i, self) => {
+    if ( !(i % size)  ) {  
+      return [
+          ...acc,
+          self.slice(i, i + size),
+        ];
+    }
+    return acc;
+  }, []);
+}

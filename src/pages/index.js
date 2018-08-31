@@ -1,4 +1,4 @@
 export * from './Program';
-export * from './Speaker';
+export * from './Speakers';
 export * from './NoMatch';
 export * from './Favourites';

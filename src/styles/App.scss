@@ -42,3 +42,11 @@
     }
   }
 }
+.speaker-detail {
+  .speakers-container {
+    display: none;
+    @media #{$large-and-up} {
+      display: block;
+    }
+  }
+}

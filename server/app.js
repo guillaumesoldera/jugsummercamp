@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const talks = require('./data/talks');
+const speakers = require('./data/speakers');
 
 const app = express();
 
@@ -14,6 +15,12 @@ app.get('/api/talks', function(req, res) {
       res.setHeader('Content-Type', 'application/json')
       res.json(talks)
     }
+);
+
+app.get('/api/speakers', function(req, res) {
+    res.setHeader('Content-Type', 'application/json')
+    res.json(speakers)
+  }
 );
 
 app.get('/*', function (req, res) {
