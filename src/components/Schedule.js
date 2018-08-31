@@ -10,7 +10,7 @@ class ScheduleRow extends Component {
     static propTypes = {
         talk: PropTypes.shape({
             title: PropTypes.string.isRequired,
-            author: PropTypes.string.isRequired,
+            author: PropTypes.array.isRequired,
             type: PropTypes.string.isRequired,
             room: PropTypes.string.isRequired,
             time: PropTypes.string.isRequired,
@@ -30,8 +30,15 @@ class ScheduleRow extends Component {
                 <p className="title">{title}</p>
                 <p className="talk-info">
                     <span className="talk-type">{type}</span><br/>
-                    <span className="talk-author">{author}</span><br />
-                    <span  className="talk-room">{room}</span>&nbsp;<span className="talk-time">{time}</span>
+                    <span className="talk-author">{
+                        author.map((a, idx) => {
+                            const suffix = idx === author.length - 1 ? '' : ' - ';
+                            return (
+                                <span key={a}>{a}{suffix}</span>
+                            )
+                        })
+                    }</span><br />
+                    <span  className="talk-room">{room}</span>&nbsp;-&nbsp;<span className="talk-time"><i className="fa fa-clock-o"></i>&nbsp;{time}</span>
                 </p>
                 <span className="secondary-content"><i className="fa fa-star-o"></i></span>
                 </NavLink>

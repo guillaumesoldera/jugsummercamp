@@ -7,7 +7,6 @@ import { Program, Speaker, NoMatch, Favourites } from './pages';
 class App extends Component {
 
   render() {
-    console.log('render')
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <div>
