@@ -5,11 +5,7 @@ const speakers = require('./data/speakers');
 
 const app = express();
 
-if (process.env.MODE === 'PROD') {
-    app.use(express.static(path.resolve(__dirname, '..', 'build')));
-} else {
-    app.use(express.static(path.join(__dirname, 'build')));
-}
+app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
 app.get('/api/talks', function(req, res) {
       res.setHeader('Content-Type', 'application/json')
@@ -24,10 +20,10 @@ app.get('/api/speakers', function(req, res) {
 );
 
 app.get('/*', function (req, res) {
-    if (process.env.MODE === 'prod') {
-        res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+    if (process.env.MODE === 'PROD') {
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
     }
 });
 
