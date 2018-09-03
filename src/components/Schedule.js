@@ -45,9 +45,7 @@ export class Schedule extends Component {
 
     render() {
         return (
-            <div className="schedule-container collections-container">
-                <ul className="collection with-header">
-                    <li className="collection-header"><h4>Programme</h4></li>
+                <ul className="collection">
                     {
                         this.props.talks.map((talk, idx) => {
                             return (
@@ -56,7 +54,6 @@ export class Schedule extends Component {
                         })
                     }
                 </ul>
-            </div>
         );
     }
 }

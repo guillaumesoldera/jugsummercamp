@@ -35,7 +35,13 @@
 }
 
 .talk-detail {
-  .schedule-container {
+  .collection.with-header {
+    display: none;
+    @media #{$large-and-up} {
+      display: block;
+    }
+  }
+  .program-container {
     display: none;
     @media #{$large-and-up} {
       display: block;
