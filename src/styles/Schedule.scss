@@ -4,9 +4,10 @@
     ul.collection {
         .schedule-item {
             .talk-info {
+                color: $primary-color;
                 .talk-type {
                     font-weight: 400;
-                    font-style: italic;
+                    //font-style: italic;
                 }
                 .talk-author {
                     font-weight: 500;

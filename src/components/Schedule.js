@@ -23,7 +23,6 @@ class ScheduleRow extends Component {
                 <NavLink to={`/program/${id}`} className="schedule-item collection-item-row">
                 <p className="title">{title}</p>
                 <p className="talk-info">
-                    <span className="talk-type">{type}</span><br/>
                     <span className="talk-author">{
                         author.map((a, idx) => {
                             const suffix = idx === author.length - 1 ? '' : ' - ';
@@ -32,7 +31,8 @@ class ScheduleRow extends Component {
                             )
                         })
                     }</span><br />
-                    <span  className="talk-room">{room}</span>&nbsp;-&nbsp;<span className="talk-time"><i className="fa fa-clock-o"></i>&nbsp;{time}</span>
+                    <span className="talk-type">{type}</span><br/>
+                    <span className="talk-room"><i className="fa fa-map-marker"></i>&nbsp;{room}</span>&nbsp;-&nbsp;<span className="talk-time"><i className="fa fa-clock-o"></i>&nbsp;{time}</span>
                 </p>
                 <span className="secondary-content"><i className="fa fa-star-o"></i></span>
                 </NavLink>
