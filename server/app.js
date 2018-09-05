@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const talks = require('./data/talks');
-const speakers = require('./data/speakers');
+const { retrieveTalks } = require('./data/talks');
+const { retrieveSpeakers } = require('./data/speakers');
 
 const app = express();
 
@@ -12,14 +12,18 @@ if (process.env.MODE === 'PROD') {
 }
 
 app.get('/api/talks', function(req, res) {
-      res.setHeader('Content-Type', 'application/json')
-      res.json(talks)
+    retrieveTalks((error, data) => {
+        res.setHeader('Content-Type', 'application/json')
+        res.json(data)
+    })
     }
 );
 
 app.get('/api/speakers', function(req, res) {
-    res.setHeader('Content-Type', 'application/json')
-    res.json(speakers)
+    retrieveSpeakers((error, data) => {
+        res.setHeader('Content-Type', 'application/json')
+        res.json(data)
+    })
   }
 );
 

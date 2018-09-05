@@ -27,7 +27,7 @@ class ScheduleRow extends Component {
                         author.map((a, idx) => {
                             const suffix = idx === author.length - 1 ? '' : ' - ';
                             return (
-                                <span key={a}>{a}{suffix}</span>
+                                <span key={a.id}>{a.name}{suffix}</span>
                             )
                         })
                     }</span><br />

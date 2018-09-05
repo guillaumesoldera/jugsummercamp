@@ -181,4 +181,80 @@ const speakers = [
     },
 ]
 
-module.exports = speakers;
+//https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/o3nyoop/public/full?alt=json
+
+var request = require('request');
+
+const worksheetId = "o3nyoop"
+
+const retrieveSpeakers = (callback) => {
+    var options = {
+        url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
+        headers: {
+          'Accept': 'application/json',
+        }
+      };
+    
+      request(options, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var result = JSON.parse(body)
+            const allSpeakers = result.feed.entry.map(entry => {
+                return {
+                    id: entry['gsx$id']['$t'],
+                    picture: entry['gsx$picture']['$t'],
+                    talks: entry['gsx$talks']['$t'].split(',').map(value => value.trim()),
+                    name: entry['gsx$name']['$t'],
+                    bio: entry['gsx$bio']['$t'],
+                }
+            })
+            callback(null, allSpeakers);
+         } else {
+           callback(error, null);
+         }
+       });
+}
+
+const speakerById = (speakerId, callback) => {
+    //console.log('speakerId', speakerId)
+    var options = {
+        url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json&sq=id=${speakerId.trim()}`,
+        headers: {
+          'Accept': 'application/json',
+        }
+      };
+    return new Promise((resolve, reject) => {
+
+        request(options, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var result = JSON.parse(body)
+                if (result && result.feed && result.feed.entry) {
+                    
+                    const allSpeakers = result.feed.entry.map(entry => {
+                        return {
+                            id: entry['gsx$id']['$t'],
+                            picture: entry['gsx$picture']['$t'],
+                            talks: entry['gsx$talks']['$t'].split(',').map(value => value.trim()),
+                            name: entry['gsx$name']['$t'],
+                            bio: entry['gsx$bio']['$t'],
+                        }
+                    })
+                    resolve(allSpeakers[0]);
+                } else {
+                    //console.log('url', `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json&sq=id=${speakerId.trim()}`)
+                    //console.log('result for speakerId', speakerId, result);
+                    resolve({id: speakerId});
+                    //callback(null, {id: speakerId})
+                }
+            } else {
+                //callback(error, null);
+                reject(error)
+            }
+        });
+    })  
+}
+
+
+module.exports = {
+    retrieveSpeakers,
+    speakerById
+};
