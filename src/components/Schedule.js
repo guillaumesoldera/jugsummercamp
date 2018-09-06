@@ -45,7 +45,9 @@ class FetchingRow extends Component {
     render() {
         return (
             <li className="collection-item">
-                <div className="fake-item"></div>
+                <div className="fake-item">
+                    <i className="fa fa-spin fa-spinner"></i>
+                </div>
             </li>
         )
     }

@@ -22,14 +22,18 @@
             }
         }
         .fake-item {
-            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            font-size: 21px;
             background-color: rgba(0,0,0,0.1);
-            //@media #{$medium-only} {
-            //    min-height: 140px;    
-            //}
-            //@media #{$large-and-up} {
-            //    minheight: 123px;
-            //}
+            @media #{$medium-only} {
+                min-height: 140px;    
+            }
+            @media #{$large-and-up} {
+                min-height: 123px;
+            }
             
         }
     }
