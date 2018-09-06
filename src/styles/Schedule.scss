@@ -1,6 +1,6 @@
 @import 'components/variables';
 
-.schedule-container {
+.program-container {
     ul.collection {
         .schedule-item {
             .talk-info {
@@ -20,6 +20,17 @@
                     font-weight: 600;
                 }
             }
+        }
+        .fake-item {
+            min-height: 120px;
+            background-color: rgba(0,0,0,0.1);
+            //@media #{$medium-only} {
+            //    min-height: 140px;    
+            //}
+            //@media #{$large-and-up} {
+            //    minheight: 123px;
+            //}
+            
         }
     }
 }

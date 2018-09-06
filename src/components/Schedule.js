@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import "../styles/Schedule.css";
 import "../styles/collections.css";
@@ -41,11 +41,33 @@ class ScheduleRow extends Component {
     }
 }
 
+class FetchingRow extends Component {
+    render() {
+        return (
+            <li className="collection-item">
+                <div className="fake-item"></div>
+            </li>
+        )
+    }
+}
+
 export class Schedule extends Component {
 
     render() {
         return (
                 <ul className="collection">
+                    {
+                        this.props.fetching && (
+                            <Fragment>
+                                <FetchingRow />
+                                <FetchingRow />
+                                <FetchingRow />
+                                <FetchingRow />
+                                <FetchingRow />
+                                <FetchingRow />
+                            </Fragment>
+                        )
+                    }
                     {
                         this.props.talks.map((talk, idx) => {
                             return (

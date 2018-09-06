@@ -9,6 +9,7 @@ export class Program extends PureComponent {
     state = {
         talks: [],
         currentTalk: undefined,
+        fetching: true,
     }
 
     componentDidMount() {
@@ -20,7 +21,8 @@ export class Program extends PureComponent {
                 }
                 this.setState({
                     talks,
-                    currentTalk
+                    currentTalk,
+                    fetching: false,
                 })
             })
     }
@@ -53,7 +55,7 @@ export class Program extends PureComponent {
                 <div className="row">
                     <div className="col s12 l6">
                         <div className="program-container">
-                            <Schedule talks={this.state.talks}/>
+                            <Schedule talks={this.state.talks} fetching={this.state.fetching}/>
                         </div>
                     </div>
                     {
