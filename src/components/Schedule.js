@@ -27,7 +27,7 @@ class ScheduleRow extends Component {
                         author.map((a, idx) => {
                             const suffix = idx === author.length - 1 ? '' : ' - ';
                             return (
-                                <span key={a.id}>{a.name}{suffix}</span>
+                                <NavLink to={`/speakers/${a.id}`} key={a.id}>{a.name}{suffix}</NavLink>
                             )
                         })
                     }</span><br />
@@ -46,7 +46,6 @@ class FetchingRow extends Component {
         return (
             <li className="collection-item">
                 <div className="fake-item">
-                    <i className="fa fa-spin fa-spinner"></i>
                 </div>
             </li>
         )

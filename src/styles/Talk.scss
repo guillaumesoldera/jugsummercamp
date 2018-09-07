@@ -18,6 +18,28 @@
             }
         }
     }
+    .talk-info {
+        color: $primary-color;
+        .talk-type {
+            font-weight: 400;
+            //font-style: italic;
+            display: block;
+        }
+        .talk-author {
+            a {
+                font-weight: 500;
+                color: #eb643b;
+            }
+            margin-bottom: 18px;
+            display: block;
+        }
+        .talk-room {
+            font-weight: 300;
+        }
+        .talk-time {
+            font-weight: 600;
+        }
+    }
 }
 .back {
     padding: 0 20px;
