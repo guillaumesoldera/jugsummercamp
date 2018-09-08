@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../styles/Speaker.css';
 import '../styles/collections.css';
 import { Speaker } from '../components';
@@ -6,6 +6,19 @@ import { retrieveSpeakers } from '../services/speakers';
 import { chunk, classSet } from '../components/utils';
 import { NavLink } from 'react-router-dom';
 
+
+class FakeSpeaker extends Component {
+    render() {
+        return (
+            <div className="card speaker fake">
+                <div className="card-image">
+                    <div className="fake-img">
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
 
 class SpeakerItem extends Component {
     render() {
@@ -29,6 +42,7 @@ export class Speakers extends Component {
     state = {
         speakers: [],
         currentSpeaker: undefined,
+        fetching: true,
     }
 
     componentDidMount() {
@@ -41,6 +55,7 @@ export class Speakers extends Component {
                 this.setState({
                     speakers,
                     currentSpeaker,
+                    fetching: false,
                 })
             })
     }
@@ -69,6 +84,68 @@ export class Speakers extends Component {
                     <div className="col s12 l7">
                     <div className="speakers-container">
                     {
+                        this.state.fetching && (
+                            <Fragment>
+                            <div className="row">
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                                <div className="col s12 l3">
+                                    <FakeSpeaker />
+                                </div>
+                            </div>
+                            </Fragment>
+                        )
+                    }
+                    {   !this.state.fetching && 
                         chunks.map((row, idx) => {
                             return (
                                 <div key={idx} className="row">

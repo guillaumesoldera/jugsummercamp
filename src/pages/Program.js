@@ -9,6 +9,7 @@ export class Program extends PureComponent {
     state = {
         talks: [],
         currentTalk: undefined,
+        fetching: true,
     }
 
     componentDidMount() {
@@ -20,7 +21,8 @@ export class Program extends PureComponent {
                 }
                 this.setState({
                     talks,
-                    currentTalk
+                    currentTalk,
+                    fetching: false,
                 })
             })
     }
@@ -46,10 +48,15 @@ export class Program extends PureComponent {
 
     render() {
         return (
-            <div className={classSet({"program-container": true, "talk-detail": this.state.currentTalk !== undefined})}>
+            <div className={classSet({"collections-container": true, "talk-detail": this.state.currentTalk !== undefined})}>
+                <ul className="collection with-header">
+                    <li className="collection-header"><h4>Programme</h4></li>
+                </ul>
                 <div className="row">
                     <div className="col s12 l6">
-                    <Schedule talks={this.state.talks}/>
+                        <div className="program-container">
+                            <Schedule talks={this.state.talks} fetching={this.state.fetching}/>
+                        </div>
                     </div>
                     {
                     this.state.currentTalk && (

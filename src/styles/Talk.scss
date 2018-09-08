@@ -2,10 +2,44 @@
 
 .talk-container {
     .talk-header {
-        color: $primary-color;
+        color: $secondary-color;
         padding: 10px 20px;
         border-bottom: 1px solid #e0e0e0,
-    }   
+    }
+    .talk-content {
+        strong {
+            font-weight: 600;
+        }
+        ul {
+            padding-left: 30px;
+            list-style-type: disc;
+            li {
+                list-style-type: disc;
+            }
+        }
+    }
+    .talk-info {
+        color: $primary-color;
+        .talk-type {
+            font-weight: 400;
+            //font-style: italic;
+            display: block;
+        }
+        .talk-author {
+            a {
+                font-weight: 500;
+                color: #eb643b;
+            }
+            margin-bottom: 18px;
+            display: block;
+        }
+        .talk-room {
+            font-weight: 300;
+        }
+        .talk-time {
+            font-weight: 600;
+        }
+    }
 }
 .back {
     padding: 0 20px;

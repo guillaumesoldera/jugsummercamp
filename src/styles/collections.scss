@@ -10,7 +10,7 @@
         overflow: auto;
         max-height: calc(100% - 56px);
         .collection-header {
-            color: $primary-color;
+            color: $header-title-color;
             background-color: $main-bg-color;
         }
         .collection-item {
