@@ -1,22 +1,23 @@
 self.addEventListener('notificationclick', function (event) {
-    console.log('On notification click: ', event.notification.tag);
+    console.log('On notification click: ', event.notification);
     event.notification.close();
     event.waitUntil(
         clients.matchAll({
             type: "window"
         }).then(function () {
-                if (clients.openWindow) {
-                    return clients.openWindow('https://jugsummercamp.cleverapps.io/');
-                }
-            })
+            if (clients.openWindow) {
+                return clients.openWindow(`http://localhost:3001/program/${event.notification.data.talkId}`);
+            }
+        })
     );
 });
 
 self.addEventListener("push", e => {
     const data = e.data.json();
-    console.log("Push Recieved... !!!!!");
+    console.log("Push Recieved... !n", data);
     self.registration.showNotification(data.title, {
         body: data.body,
-        icon: data.icon
+        icon: data.icon,
+        data: data.data,
     });
 });

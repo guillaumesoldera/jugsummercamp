@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/css/bundle/jugSummercamp.css","6d5176d6965f29e696b24335c2db0c77"],["/images/logo.png","3d328ca4248dc35a06de3438723489b2"],["/index.html","0805f90246b90f3b33abf7a7c6fd8a3f"],["/javascripts/bundle/jugSummercamp.js","48a9488493ab535c63e56336625099bb"],["/javascripts/bundle/media/3d328ca4248dc35a06de3438723489b2.png","3d328ca4248dc35a06de3438723489b2"],["/javascripts/bundle/media/674f50d287a8c48dc19ba404d20fe713.eot","674f50d287a8c48dc19ba404d20fe713"],["/javascripts/bundle/media/912ec66d7572ff821749319396470bde.svg","912ec66d7572ff821749319396470bde"],["/javascripts/bundle/media/b06871f281fee6b241d60582ae9369b9.ttf","b06871f281fee6b241d60582ae9369b9"]];
+var precacheConfig = [["/css/bundle/jugSummercamp.css","16d7ead2fb6819245b963f6da8396ced"],["/images/logo.png","3d328ca4248dc35a06de3438723489b2"],["/index.html","0805f90246b90f3b33abf7a7c6fd8a3f"],["/javascripts/bundle/jugSummercamp.js","0c40e2e65339ac674838cea0407d36ab"],["/javascripts/bundle/media/3d328ca4248dc35a06de3438723489b2.png","3d328ca4248dc35a06de3438723489b2"],["/javascripts/bundle/media/674f50d287a8c48dc19ba404d20fe713.eot","674f50d287a8c48dc19ba404d20fe713"],["/javascripts/bundle/media/912ec66d7572ff821749319396470bde.svg","912ec66d7572ff821749319396470bde"],["/javascripts/bundle/media/b06871f281fee6b241d60582ae9369b9.ttf","b06871f281fee6b241d60582ae9369b9"]];
 var cacheName = 'sw-precache-v3-the-magic-cache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -285,11 +285,11 @@ self.addEventListener('fetch', function(event) {
 
 // Runtime cache configuration, using the sw-toolbox library.
 
-toolbox.router.get(/\/api\/talks/, toolbox.networkFirst, {});
 toolbox.router.get(/\/api\/speakers/, toolbox.networkFirst, {});
+toolbox.router.get(/\/api\/talks/, toolbox.networkFirst, {});
 
 
 
 
-importScripts("/push-support.js");
+importScripts("/sync-support.js","/push-support.js");
 

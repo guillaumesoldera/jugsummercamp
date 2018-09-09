@@ -1,0 +1,3 @@
+multiple size assets for manifest
+lighthouse 100%
+steps (for the talk)

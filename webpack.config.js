@@ -45,7 +45,7 @@ let plugins = [
         // If a URL is already hashed by Webpack, then there is no concern
         // about it being stale, and the cache-busting can be skipped.
         cacheId: 'the-magic-cache',
-        filepath: resolve(__dirname, './public/serviceworker.js'),
+        filepath: resolve(__dirname, './public/service-worker.js'),
         minify: false,
         // For unknown URLs, fallback to the index page
         navigateFallback: '/',
@@ -65,13 +65,13 @@ let plugins = [
         ],
         // offline support
         runtimeCaching: [{
-            urlPattern: /\/api\/talks/,
-            handler: 'networkFirst'
-        }, {
             urlPattern: /\/api\/speakers/,
             handler: 'networkFirst'
+        }, {
+            urlPattern: /\/api\/talks/,
+            handler: 'networkFirst'
         }],
-        importScripts: ['../../push-support.js']
+        importScripts: ['../../sync-support.js','../../push-support.js']
     }),
 ];
 
@@ -103,7 +103,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
-            
+
                   {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({

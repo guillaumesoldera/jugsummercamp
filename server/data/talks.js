@@ -229,17 +229,17 @@ const talks = [
 
 
 const request = require('request');
-const { speakerById } = require('./speakers')
+const {speakerById} = require('./speakers')
 const worksheetId = 'od6'
-const retrieveTalks = (callback) => {
+const retrieveTalks = new Promise((resolve, reject) => {
     var options = {
         url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
         headers: {
-          'Accept': 'application/json',
+            'Accept': 'application/json',
         }
-      };
-    
-      request(options, function(error, response, body) {
+    };
+
+    request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var result = JSON.parse(body)
             const allTalks = result.feed.entry.map(entry => {
@@ -263,20 +263,71 @@ const retrieveTalks = (callback) => {
                         })
                 })
                 return Promise.all(allPromises)
-                .then(() => {
-                    return richTalk;
-                })
+                    .then(() => {
+                        return richTalk;
+                    })
             })
             Promise.all(completedTalksPromises)
                 .then(completedTalks => {
-                    callback(null, completedTalks);
+                    resolve(completedTalks);
                 })
-         } else {
-           callback(error, null);
-         }
-       });
-}
+        } else {
+            reject(error);
+        }
+    });
+});
+
+const retrieveTalkById =(talkId) => new Promise((resolve, reject) => {
+    var options = {
+        url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
+        headers: {
+            'Accept': 'application/json',
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var result = JSON.parse(body)
+            const allTalks = result.feed.entry.map(entry => {
+                return {
+                    id: entry['gsx$id']['$t'],
+                    title: entry['gsx$title']['$t'],
+                    author: entry['gsx$author']['$t'].split(',').map(value => value.trim()),
+                    type: entry['gsx$type']['$t'],
+                    room: entry['gsx$room']['$t'],
+                    time: entry['gsx$time']['$t'],
+                    description: entry['gsx$description']['$t'],
+                }
+            }).filter(talk => talk.id === talkId);
+            if (allTalks.length == 1) {
+                const completedTalksPromises = allTalks.map(talk => {
+                    const richTalk = Object.assign({}, talk);
+                    const allPromises = talk.author.map((authorId, idx) => {
+                        return speakerById(authorId)
+                            .then((author) => {
+                                richTalk.author[idx] = author
+                            })
+                    })
+                    return Promise.all(allPromises)
+                        .then(() => {
+                            return richTalk;
+                        })
+                })
+                Promise.all(completedTalksPromises)
+                    .then(completedTalks => {
+                        resolve(completedTalks[0]);
+                    })
+            } else {
+                reject('talk not found!');
+            }
+        } else {
+            reject(error);
+        }
+    });
+});
+
 
 module.exports = {
-    retrieveTalks
+    retrieveTalks,
+    retrieveTalkById
 };

@@ -1,28 +1,34 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import "../styles/Schedule.css";
 import "../styles/collections.css";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 class ScheduleRow extends Component {
 
     static propTypes = {
-        talk: PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            author: PropTypes.array.isRequired,
-            type: PropTypes.string.isRequired,
-            room: PropTypes.string.isRequired,
-            time: PropTypes.string.isRequired,
-        }),
-    }
+        row: PropTypes.shape({
+            talk: PropTypes.shape({
+                title: PropTypes.string.isRequired,
+                author: PropTypes.array.isRequired,
+                type: PropTypes.string.isRequired,
+                room: PropTypes.string.isRequired,
+                time: PropTypes.string.isRequired,
+            }),
+            starred: PropTypes.bool.isRequired,
+            onStarr: PropTypes.func.isRequired,
+            rank: PropTypes.number.isRequired,
+        })
+    };
 
     render() {
-        const { id, title, author, type, room, time} = this.props.talk;
+        const {starred, onStarr, talk, rank} = this.props.row;
+        const {id, title, author, type, room, time} = talk;
         return (
             <li className="collection-item">
-                <NavLink to={`/program/${id}`} className="schedule-item collection-item-row">
-                <p className="title">{title}</p>
-                <p className="talk-info">
+                <NavLink className="schedule-item collection-item-row" to={`/program/${id}`}>
+                    <p className="title">{title}</p>
+                    <p className="talk-info">
                     <span className="talk-author">{
                         author.map((a, idx) => {
                             const suffix = idx === author.length - 1 ? '' : ' - ';
@@ -31,10 +37,13 @@ class ScheduleRow extends Component {
                             )
                         })
                     }</span><br />
-                    <span className="talk-type">{type}</span><br/>
-                    <span className="talk-room"><i className="fa fa-map-marker"></i>&nbsp;{room}</span>&nbsp;-&nbsp;<span className="talk-time"><i className="fa fa-clock-o"></i>&nbsp;{time}</span>
-                </p>
-                <span className="secondary-content"><i className="fa fa-star-o"></i></span>
+                        <span className="talk-type">{type}</span><br/>
+                        <span className="talk-room"><i className="fa fa-map-marker"/>&nbsp;{room}</span>&nbsp;
+                        -&nbsp;<span className="talk-time"><i className="fa fa-clock-o"/>&nbsp;{time}</span>
+                    </p>
+
+                    <span className="secondary-content" onClick={onStarr(talk, rank)}><i
+                        className={`fa ${starred ? ' fa-star' : 'fa-star-o'}`}/></span>
                 </NavLink>
             </li>
         )
@@ -56,27 +65,27 @@ export class Schedule extends Component {
 
     render() {
         return (
-                <ul className="collection">
-                    {
-                        this.props.fetching && (
-                            <Fragment>
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                            </Fragment>
+            <ul className="collection">
+                {
+                    this.props.fetching && (
+                        <Fragment>
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                        </Fragment>
+                    )
+                }
+                {
+                    this.props.rows.map((row, idx) => {
+                        return (
+                            <ScheduleRow key={idx} row={row}/>
                         )
-                    }
-                    {
-                        this.props.talks.map((talk, idx) => {
-                            return (
-                                <ScheduleRow key={idx} talk={talk} />
-                            )
-                        })
-                    }
-                </ul>
+                    })
+                }
+            </ul>
         );
     }
 }

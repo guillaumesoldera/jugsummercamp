@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import { Header } from './components';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Program, Speakers, NoMatch, Favourites } from './pages';
+import { Program, Speakers, NoMatch, Favorites } from './pages';
 
 class App extends Component {
 
@@ -18,7 +18,7 @@ class App extends Component {
               <Route path="/program/:talkId" render={({match}) => <Program talkId={match.params.talkId}/>} />
               <Route exact path="/speakers" component={Speakers} />
               <Route path="/speakers/:speakerId" render={({match}) => <Speakers speakerId={match.params.speakerId}/>} />
-              <Route path="/favourites" component={Favourites} />
+              <Route path="/favorites" component={Favorites} />
               <Route component={NoMatch} />
             </Switch>
           </div>
