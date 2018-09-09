@@ -44,5 +44,26 @@ nav {
                 background-color: rgba(0, 0, 0, 0.1);            
             }
         }
+        #new-version {
+            div {
+                padding: 0 15px;
+                cursor: pointer;
+                position: relative;
+                i.fa {
+                    display: flex;
+                    align-items: center;
+                    font-size: 38px;
+                }
+                span.badge {
+                    position: absolute;
+                    min-width: 21px;
+                    padding: 0;
+                    left: 4px;
+                    border-radius: 12px;
+                    top: 5px;
+                    margin-left: 0px;
+                }
+            }
+        }
     }
 }

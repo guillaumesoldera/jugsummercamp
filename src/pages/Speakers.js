@@ -50,7 +50,7 @@ export class Speakers extends Component {
             .then(speakers => {
                 let currentSpeaker = undefined;
                 if (this.props.speakerId) {
-                    currentSpeaker = speakers.find(sp => sp.id === this.props.speakerId);
+                    currentSpeaker = (speakers || []).find(sp => sp.id === this.props.speakerId);
                 }
                 this.setState({
                     speakers,

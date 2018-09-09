@@ -10,6 +10,13 @@ export class Header extends Component {
         return pathname === '/' || pathname.startsWith('/program/')
     }
 
+    reload = (e) => {
+        if (e && e.preventDefault) {
+            e.preventDefault();
+        }
+        window.location.reload(true);
+    }
+
     render() {
         return (
             <nav>
@@ -22,6 +29,7 @@ export class Header extends Component {
                     <li><NavLink exact to="/" isActive={this.onProgramTab}>Programme</NavLink></li>
                     <li><NavLink to="/speakers">Speakers</NavLink></li>
                     <li><NavLink to="/favourites">Favoris</NavLink></li>
+                    <li id="new-version" style={{"display": "none"}}><div onClick={this.reload}><i className="fa fa-repeat"></i><span className="new badge" data-badge-caption="">1</span></div></li>
                 </ul>
                 </div>
             </nav>
