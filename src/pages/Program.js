@@ -3,48 +3,33 @@ import { Schedule } from '../components';
 import { Talk } from '../components/Talk';
 import { classSet } from '../components/utils';
 import { retrieveTalks } from '../services/talks';
-import { readAllFavouriteKeys, addFavourite, removeFavourite } from '../services/favourites';
+import {starrUnStarr, all} from '../storages/store';
 
 export class Program extends PureComponent {
 
     state = {
         talks: [],
+        starredTalks: [],
         currentTalk: undefined,
         fetching: true,
-        favourites: [],
-    }
+    };
 
     componentDidMount() {
-        Promise.all([retrieveTalks(), readAllFavouriteKeys()])
-            .then(results => {
-                const [talks, favourites] = results;
+        Promise.all([retrieveTalks(), all()])
+            .then(data => {
                 let currentTalk = undefined;
                 if (this.props.talkId) {
-                    currentTalk = talks.find(item => item.id === this.props.talkId)
+                    currentTalk = data[0].find(item => item.id === this.props.talkId)
                 }
                 this.setState({
-                    talks,
+                    talks: data[0],
                     currentTalk,
                     fetching: false,
-                    favourites
+                    starredTalks: data[1]
                 })
             })
     }
 
-    addTalkToFavourites = (talk) => {
-        addFavourite(talk)
-            .then(() => {
-                this.state.favourites.push(talk.id)
-            })
-    }
-
-    removeTalkFromFavourites = (talk) => {
-        removeFavourite(talk)
-            .then(() => {
-                this.state.favourites = this.state.favourites.filter(elem => elem !== talk.id)
-            })
-    }
-    
     componentWillReceiveProps(nextProps) {
         if (nextProps.talkId !== this.props.talkId) {
             let currentTalk = undefined;
@@ -57,31 +42,45 @@ export class Program extends PureComponent {
         }
     }
 
-    onTalkSelected = (talk) => {
-    this.setState({
-        currentTalk: talk,
-    })
-    }
-
+    onStarr = (talk, rank) => {
+        return (e) => {
+            e.preventDefault();
+            starrUnStarr(talk, rank)
+                .then(starredTalks => {
+                    this.setState({
+                        starredTalks,
+                    })
+                })
+        }
+    };
 
     render() {
+        const rows = this.state.talks.map((talk,index) => ({
+            talk,
+            onStarr: this.onStarr,
+            rank: index,
+            starred: this.state.starredTalks.filter(_talk => _talk.id === talk.id).length > 0
+        }));
         return (
-            <div className={classSet({"collections-container": true, "talk-detail": this.state.currentTalk !== undefined})}>
+            <div className={classSet({
+                "collections-container": true,
+                "talk-detail": this.state.currentTalk !== undefined
+            })}>
                 <ul className="collection with-header">
                     <li className="collection-header"><h4>Programme</h4></li>
                 </ul>
                 <div className="row">
                     <div className="col s12 l6">
                         <div className="program-container">
-                            <Schedule addToFavourites={this.addTalkToFavourites} removeFromFavourites={this.removeTalkFromFavourites} talks={this.state.talks} fetching={this.state.fetching} favourites={this.state.favourites}/>
+                            <Schedule rows={rows} fetching={this.state.fetching}/>
                         </div>
                     </div>
                     {
-                    this.state.currentTalk && (
-                        <div className="col s12 l6">
-                        <Talk talk={this.state.currentTalk}/>
-                        </div>
-                    )
+                        this.state.currentTalk && (
+                            <div className="col s12 l6">
+                                <Talk talk={this.state.currentTalk}/>
+                            </div>
+                        )
                     }
                 </div>
             </div>

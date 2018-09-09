@@ -187,7 +187,7 @@ var request = require('request');
 
 const worksheetId = "o3nyoop"
 
-const retrieveSpeakers = (callback) => {
+const retrieveSpeakers = new Promise((resolve, reject) => {
     var options = {
         url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
         headers: {
@@ -207,15 +207,14 @@ const retrieveSpeakers = (callback) => {
                     bio: entry['gsx$bio']['$t'],
                 }
             })
-            callback(null, allSpeakers);
+            resolve(allSpeakers);
          } else {
-           callback(error, null);
+            reject(error);
          }
        });
-}
+})
 
-const speakerById = (speakerId, callback) => {
-    //console.log('speakerId', speakerId)
+const speakerById = (speakerId) => {
     var options = {
         url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json&sq=id=${speakerId.trim()}`,
         headers: {

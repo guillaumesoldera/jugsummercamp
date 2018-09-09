@@ -3,60 +3,32 @@ import PropTypes from 'prop-types';
 import "../styles/Schedule.css";
 import "../styles/collections.css";
 import { NavLink } from "react-router-dom";
-import { classSet } from './utils';
 
 class ScheduleRow extends Component {
 
     static propTypes = {
-        talk: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            author: PropTypes.array.isRequired,
-            type: PropTypes.string.isRequired,
-            room: PropTypes.string.isRequired,
-            time: PropTypes.string.isRequired,
-        }),
-    }
-
-    state = {
-        isFavourite: this.props.isFavourite
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.isFavourite !== this.state.isFavourite) {
-            this.setState({
-                isFavourite: nextProps.isFavourite
-            })
-        }
-    }
-
-    onClick = (e) => {
-        if (e && e.preventDefault) {
-            e.preventDefault();
-        }
-        if (e && e.stopPropagation) {
-            e.stopPropagation();
-        }
-        if (this.state.isFavourite) {
-            this.props.removeFromFavourites(this.props.talk)
-            this.setState({
-                isFavourite: false,
-            })
-        } else {
-            this.props.addToFavourites(this.props.talk);
-            this.setState({
-                isFavourite: true,
-            })
-        }
-    }
+        row: PropTypes.shape({
+            talk: PropTypes.shape({
+                title: PropTypes.string.isRequired,
+                author: PropTypes.array.isRequired,
+                type: PropTypes.string.isRequired,
+                room: PropTypes.string.isRequired,
+                time: PropTypes.string.isRequired,
+            }),
+            starred: PropTypes.bool.isRequired,
+            onStarr: PropTypes.func.isRequired,
+            rank: PropTypes.number.isRequired,
+        })
+    };
 
     render() {
-        const { id, title, author, type, room, time} = this.props.talk;
+        const {starred, onStarr, talk, rank} = this.props.row;
+        const {id, title, author, type, room, time} = talk;
         return (
             <li className="collection-item">
-                <NavLink to={`/program/${id}`} className="schedule-item collection-item-row">
-                <p className="title">{title}</p>
-                <p className="talk-info">
+                <NavLink className="schedule-item collection-item-row" to={`/program/${id}`}>
+                    <p className="title">{title}</p>
+                    <p className="talk-info">
                     <span className="talk-author">{
                         author.map((a, idx) => {
                             const suffix = idx === author.length - 1 ? '' : ' - ';
@@ -65,11 +37,13 @@ class ScheduleRow extends Component {
                             )
                         })
                     }</span><br />
-                    <span className="talk-type">{type}</span><br/>
-                    <span className="talk-room"><i className="fa fa-map-marker"></i>&nbsp;{room}</span>&nbsp;-&nbsp;<span className="talk-time"><i className="fa fa-clock-o"></i>&nbsp;{time}</span>
-                </p>
-                <span className="secondary-content" onClick={this.onClick}>
-                <i className={classSet({"fa": true, "fa-star-o": !this.state.isFavourite, "fa-star": this.state.isFavourite})}></i></span>
+                        <span className="talk-type">{type}</span><br/>
+                        <span className="talk-room"><i className="fa fa-map-marker"/>&nbsp;{room}</span>&nbsp;
+                        -&nbsp;<span className="talk-time"><i className="fa fa-clock-o"/>&nbsp;{time}</span>
+                    </p>
+
+                    <span className="secondary-content" onClick={onStarr(talk, rank)}><i
+                        className={`fa ${starred ? ' fa-star' : 'fa-star-o'}`}/></span>
                 </NavLink>
             </li>
         )
@@ -91,27 +65,27 @@ export class Schedule extends Component {
 
     render() {
         return (
-                <ul className="collection">
-                    {
-                        this.props.fetching && (
-                            <Fragment>
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                                <FetchingRow />
-                            </Fragment>
+            <ul className="collection">
+                {
+                    this.props.fetching && (
+                        <Fragment>
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                            <FetchingRow />
+                        </Fragment>
+                    )
+                }
+                {
+                    this.props.rows.map((row, idx) => {
+                        return (
+                            <ScheduleRow key={idx} row={row}/>
                         )
-                    }
-                    {
-                        this.props.talks.map((talk, idx) => {
-                            return (
-                                <ScheduleRow key={idx} talk={talk} isFavourite={this.props.favourites.indexOf(talk.id) !== -1} addToFavourites={this.props.addToFavourites} removeFromFavourites={this.props.removeFromFavourites} />
-                            )
-                        })
-                    }
-                </ul>
+                    })
+                }
+            </ul>
         );
     }
 }
