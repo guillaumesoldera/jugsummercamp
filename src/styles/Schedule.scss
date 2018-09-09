@@ -22,6 +22,14 @@
                     font-weight: 600;
                 }
             }
+            .secondary-content {
+                width: 32px;
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                right: 4px !important;
+            }
         }
         .fake-item {
             display: flex;

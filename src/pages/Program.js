@@ -3,6 +3,7 @@ import { Schedule } from '../components';
 import { Talk } from '../components/Talk';
 import { classSet } from '../components/utils';
 import { retrieveTalks } from '../services/talks';
+import { readAllFavouriteKeys, addFavourite, removeFavourite } from '../services/favourites';
 
 export class Program extends PureComponent {
 
@@ -10,11 +11,13 @@ export class Program extends PureComponent {
         talks: [],
         currentTalk: undefined,
         fetching: true,
+        favourites: [],
     }
 
     componentDidMount() {
-        retrieveTalks()
-            .then(talks => {
+        Promise.all([retrieveTalks(), readAllFavouriteKeys()])
+            .then(results => {
+                const [talks, favourites] = results;
                 let currentTalk = undefined;
                 if (this.props.talkId) {
                     currentTalk = talks.find(item => item.id === this.props.talkId)
@@ -23,7 +26,22 @@ export class Program extends PureComponent {
                     talks,
                     currentTalk,
                     fetching: false,
+                    favourites
                 })
+            })
+    }
+
+    addTalkToFavourites = (talk) => {
+        addFavourite(talk)
+            .then(() => {
+                this.state.favourites.push(talk.id)
+            })
+    }
+
+    removeTalkFromFavourites = (talk) => {
+        removeFavourite(talk)
+            .then(() => {
+                this.state.favourites = this.state.favourites.filter(elem => elem !== talk.id)
             })
     }
     
@@ -55,7 +73,7 @@ export class Program extends PureComponent {
                 <div className="row">
                     <div className="col s12 l6">
                         <div className="program-container">
-                            <Schedule talks={this.state.talks} fetching={this.state.fetching}/>
+                            <Schedule addToFavourites={this.addTalkToFavourites} removeFromFavourites={this.removeTalkFromFavourites} talks={this.state.talks} fetching={this.state.fetching} favourites={this.state.favourites}/>
                         </div>
                     </div>
                     {
