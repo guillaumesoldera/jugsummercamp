@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/css/bundle/jugSummercamp.css","16d7ead2fb6819245b963f6da8396ced"],["/images/logo.png","3d328ca4248dc35a06de3438723489b2"],["/index.html","0805f90246b90f3b33abf7a7c6fd8a3f"],["/javascripts/bundle/jugSummercamp.js","0c40e2e65339ac674838cea0407d36ab"],["/javascripts/bundle/media/3d328ca4248dc35a06de3438723489b2.png","3d328ca4248dc35a06de3438723489b2"],["/javascripts/bundle/media/674f50d287a8c48dc19ba404d20fe713.eot","674f50d287a8c48dc19ba404d20fe713"],["/javascripts/bundle/media/912ec66d7572ff821749319396470bde.svg","912ec66d7572ff821749319396470bde"],["/javascripts/bundle/media/b06871f281fee6b241d60582ae9369b9.ttf","b06871f281fee6b241d60582ae9369b9"]];
+var precacheConfig = [["/css/bundle/jugSummercamp.css","c40d6891f94e9c0bbd314ca47dc5ac32"],["/images/logo.png","3d328ca4248dc35a06de3438723489b2"],["/index.html","0805f90246b90f3b33abf7a7c6fd8a3f"],["/javascripts/bundle/jugSummercamp.js","b45d60511a6a91e4434a7b423466952a"],["/javascripts/bundle/media/3d328ca4248dc35a06de3438723489b2.png","3d328ca4248dc35a06de3438723489b2"],["/javascripts/bundle/media/674f50d287a8c48dc19ba404d20fe713.eot","674f50d287a8c48dc19ba404d20fe713"],["/javascripts/bundle/media/912ec66d7572ff821749319396470bde.svg","912ec66d7572ff821749319396470bde"],["/javascripts/bundle/media/b06871f281fee6b241d60582ae9369b9.ttf","b06871f281fee6b241d60582ae9369b9"]];
 var cacheName = 'sw-precache-v3-the-magic-cache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -291,5 +291,5 @@ toolbox.router.get(/\/api\/talks/, toolbox.networkFirst, {});
 
 
 
-importScripts("/sync-support.js","/push-support.js");
+importScripts("/push-support.js","/sync-support.js");
 

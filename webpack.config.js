@@ -55,13 +55,13 @@ let plugins = [
         },
         staticFileGlobs: [
             resolve(__dirname, './public/index.html'),
+            resolve(__dirname, './public/images/*.png'),
+            resolve(__dirname, './public/images/icons/**.*'),
             resolve(__dirname, './public/javascripts/*.js'),
             resolve(__dirname, './public/javascripts/bundle/*.js'),
             resolve(__dirname, './public/javascripts/bundle/media/**.*'),
             resolve(__dirname, './public/css/*.css'),
             resolve(__dirname, './public/css/bundle/*.css'),
-            resolve(__dirname, './public/images/icons/**.*'),
-            resolve(__dirname, './public/images/*.png')
         ],
         // offline support
         runtimeCaching: [{
@@ -71,7 +71,7 @@ let plugins = [
             urlPattern: /\/api\/talks/,
             handler: 'networkFirst'
         }],
-        importScripts: ['../../sync-support.js','../../push-support.js']
+        importScripts: ['../../push-support.js','../../sync-support.js']
     }),
 ];
 

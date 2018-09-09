@@ -6,7 +6,6 @@ db.version(1).stores({
     favorites: "id,title,author,type,room,time,description,rank",
     ratings: "id,rate"
 });
-db.open();
 
 self.addEventListener('sync', function (event) {
     console.log("sync Recieved... !!!!!");

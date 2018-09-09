@@ -48,7 +48,7 @@ export const starrUnStarr = (talk, rank) => {
 };
 
 export const all = () => {
-    return db.favorites.orderBy('rank').toArray();
+    return db.favorites.orderBy('rank').toArray()
 };
 
 const requestSync = (evt) => navigator.serviceWorker.ready
