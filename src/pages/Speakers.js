@@ -76,6 +76,7 @@ export class Speakers extends Component {
         const chunks = chunk(4, this.state.speakers);
 
         return (
+            <Fragment>
             <div className={classSet({"collections-container": true, "speaker-detail": this.state.currentSpeaker !== undefined})}>
                 <ul className="collection with-header">
                     <li className="collection-header"><h4>Speakers</h4></li>
@@ -174,6 +175,10 @@ export class Speakers extends Component {
                     }
                 </div>
             </div>
+            {this.state.fetching && (
+                    <div className="loader"></div>
+                )}
+            </Fragment>
         );
     }
 }

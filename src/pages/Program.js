@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { Schedule } from '../components';
 import { Talk } from '../components/Talk';
 import { classSet } from '../components/utils';
@@ -62,28 +62,33 @@ export class Program extends PureComponent {
             starred: this.state.starredTalks.filter(_talk => _talk.id === talk.id).length > 0
         }));
         return (
-            <div className={classSet({
-                "collections-container": true,
-                "talk-detail": this.state.currentTalk !== undefined
-            })}>
-                <ul className="collection with-header">
-                    <li className="collection-header"><h4>Programme</h4></li>
-                </ul>
-                <div className="row">
-                    <div className="col s12 l6">
-                        <div className="program-container">
-                            <Schedule rows={rows} fetching={this.state.fetching}/>
-                        </div>
-                    </div>
-                    {
-                        this.state.currentTalk && (
-                            <div className="col s12 l6">
-                                <Talk talk={this.state.currentTalk}/>
+            <Fragment>
+                <div className={classSet({
+                    "collections-container": true,
+                    "talk-detail": this.state.currentTalk !== undefined
+                })}>
+                    <ul className="collection with-header">
+                        <li className="collection-header"><h4>Programme</h4></li>
+                    </ul>
+                    <div className="row">
+                        <div className="col s12 l6">
+                            <div className="program-container">
+                                <Schedule rows={rows} fetching={this.state.fetching}/>
                             </div>
-                        )
-                    }
+                        </div>
+                        {
+                            this.state.currentTalk && (
+                                <div className="col s12 l6">
+                                    <Talk talk={this.state.currentTalk}/>
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
+                {this.state.fetching && (
+                    <div className="loader"></div>
+                )}
+            </Fragment>
         );
     }
 }
