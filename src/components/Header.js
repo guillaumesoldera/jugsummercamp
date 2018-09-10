@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import logo from '../images/logo-summercamp.png';
 import '../styles/Header.css'
 import { NavLink } from "react-router-dom";
+import { getDevice, Devices } from './utils';
+
+
+const encanLat = 46.1519906;
+const encanLon = -1.1528218;
 
 export class Header extends Component {
 
@@ -18,9 +23,20 @@ export class Header extends Component {
     }
 
     render() {
+
+        const device = getDevice();
+        let goToUrl = `https://www.google.com/maps/dir/?api=1&destination=${encanLat},${encanLon}`;
+        if (device && device === Devices.ios) {
+          goToUrl = `http://maps.apple.com/?daddr=${encanLat},${encanLon}&dirflg=d`
+        } else if (device && device === Devices.android) {
+          goToUrl = `google.navigation:q=${encanLat},${encanLon}`
+        }
+
+
         return (
             <nav>
                 <div className="nav-wrapper">
+                <a href={goToUrl} className="location-container"><i className="fa fa-location-arrow location"></i></a>
                 <NavLink exact  to="/" className="brand-logo right">
                     <span className="brand-title">JugSummercamp</span>
                     <img src={logo} className="jug-logo" alt="JugSummercamp"/>

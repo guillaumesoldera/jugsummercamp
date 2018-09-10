@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import "../styles/Schedule.css";
 import "../styles/collections.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
-class ScheduleRow extends Component {
+class _ScheduleRow extends Component {
 
     static propTypes = {
         row: PropTypes.shape({
@@ -21,6 +21,16 @@ class ScheduleRow extends Component {
         })
     };
 
+    goToSpeaker = (e, id) => {
+        if (e && e.preventDefault) {
+            e.preventDefault()
+        }
+        if (e && e.stopPropagation) {
+            e.stopPropagation();
+        }
+        this.props.history.push(`/speakers/${id}`);
+    }
+
     render() {
         const {starred, onStarr, talk, rank} = this.props.row;
         const {id, title, author, type, room, time} = talk;
@@ -33,7 +43,7 @@ class ScheduleRow extends Component {
                         author.map((a, idx) => {
                             const suffix = idx === author.length - 1 ? '' : ' - ';
                             return (
-                                <NavLink to={`/speakers/${a.id}`} key={a.id}>{a.name}{suffix}</NavLink>
+                                <span onClick={(e) => this.goToSpeaker(e, a.id)} key={a.id}>{a.name}{suffix}</span>
                             )
                         })
                     }</span><br />
@@ -49,6 +59,8 @@ class ScheduleRow extends Component {
         )
     }
 }
+
+const ScheduleRow = withRouter(_ScheduleRow);
 
 class FetchingRow extends Component {
     render() {

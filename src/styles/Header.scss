@@ -7,17 +7,23 @@ nav {
             color: $main-bg-color;
         }
     }
+    .location-container {
+        font-size: 1.8rem;
+        margin-left: 18px;
+    }
     a.brand-logo {
         display: flex;
         top: 3px;
         color: $main-bg-color;
+        font-size: 1.8rem;
         @media #{$medium-and-up} {
         top: 7px;
         }
         @media #{$small-and-down} {
-            width: 90%;
+            width: auto;
             display: flex;
             justify-content: space-between;
+            right: 0;
         }
         .brand-title {
             @media #{$medium-and-up} {

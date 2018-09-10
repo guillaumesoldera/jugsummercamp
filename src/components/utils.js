@@ -24,3 +24,29 @@ export function chunk(size, list) {
     return acc;
   }, []);
 }
+
+export const Devices = Object.freeze({
+  ios: Symbol('IOS'),
+  android:  Symbol('ANDROID'),
+  windowsPhone: Symbol('WINDOWS_PHONE'),
+});
+
+
+export function getDevice() {
+  const userAgent = navigator.userAgent;
+  const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+  if (iOS) {
+    return Devices.ios
+  } else {
+    const windowsPhone = /Windows Phone/.test(userAgent);
+    if (windowsPhone) {
+      return Devices.windowsPhone
+    } else {
+      if (/android/i.test(userAgent))
+      {
+        return Devices.android;
+      }
+    }
+  }
+  return undefined;
+}
