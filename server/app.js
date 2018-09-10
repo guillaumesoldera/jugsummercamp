@@ -5,8 +5,8 @@ const webpush = require("web-push");
 const {retrieveTalks, retrieveTalkById} = require('./data/talks');
 const {retrieveSpeakers} = require('./data/speakers');
 const moment = require('moment');
+const compression = require('compression');
 moment.locale('fr');
-
 const app = express();
 const subscriptions = [];
 let talkSubscribers = new Map();
@@ -20,6 +20,8 @@ webpush.setVapidDetails(
     publicVapidKey,
     privateVapidKey
 );
+
+app.use(compression());
 
 app.use(function(req, res, next) {
     if(!req.secure) {
