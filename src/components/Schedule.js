@@ -53,7 +53,7 @@ class _ScheduleRow extends Component {
                     </p>
 
                     <span className="secondary-content" onClick={onStarr(talk, rank)}><i
-                        className={`fa ${starred ? ' fa-star' : 'fa-star-o'}`}/></span>
+                        className={`fa ${starred ? ' fa-heart' : 'fa-heart-o'}`}/></span>
                 </NavLink>
             </li>
         )
