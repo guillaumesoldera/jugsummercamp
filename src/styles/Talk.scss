@@ -58,10 +58,13 @@
     }
     .rating > label:before {
       margin: 5px;
-      font-size: 1.25em;
+      font-size: 2.5em;
       font-family: FontAwesome;
       display: inline-block;
       content: "\f005";
+      @media #{$large-and-up} {
+        font-size: 1.25em;
+      }
     }
 
     .rating > .half:before {
