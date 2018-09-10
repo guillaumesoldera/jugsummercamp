@@ -6,7 +6,7 @@ self.addEventListener('notificationclick', function (event) {
             type: "window"
         }).then(function () {
             if (clients.openWindow) {
-                return clients.openWindow(`http://localhost:3001/program/${event.notification.data.talkId}`);
+                return clients.openWindow(`https://jugsummercamp.cleverapps.io/program/${event.notification.data.talkId}`);
             }
         })
     );
