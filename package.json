@@ -11,7 +11,7 @@
     "build": "rm -rf ./public/javascripts/*  &&  rm -rf ./public/css/*  && rm -f ./public/service-worker.js && yarn build-css &&  yarn bundle",
     "build-dev": "rm -rf ./public/javascripts/* &&  rm -rf ./public/css/*  && rm -f ./public/service-worker.js && yarn build-css && yarn bundle-dev",
     "start": "yarn build && node server",
-    "start-dev": "MODE=DEV webpack-dev-server -d --colors --inline --port 3030 && MODE=DEV node server"
+    "start-dev": "MODE=DEV yarn build-dev && MODE=DEV node server"
   },
   "license": "MIT",
   "dependencies": {

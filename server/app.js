@@ -5,6 +5,7 @@ const webpush = require("web-push");
 const {retrieveTalks, retrieveTalkById} = require('./data/talks');
 const {retrieveSpeakers} = require('./data/speakers');
 const moment = require('moment');
+const expressValidator = require('express-validator');
 const compression = require('compression');
 moment.locale('fr');
 const app = express();
@@ -22,16 +23,21 @@ webpush.setVapidDetails(
 );
 
 app.use(compression());
-
-app.use(function(req, res, next) {
-    if(!req.secure) {
-      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+app.enable('trust proxy');
+app.use(function (req, res, next) {
+    if (req.secure) {
+        next();
+    } else {
+        if (process.env.MODE === 'DEV') {
+            next();
+        } else {
+            res.redirect('https://' + req.headers.host + req.url);
+        }
     }
-    next();
-  });
-  
-
+});
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
