@@ -103,9 +103,11 @@ app.get('/*', function (req, res) {
 
 app.post('/api/notify', function (req, res) {
     const talkId = req.body.talkId;
+    console.log('_talkId...', talkId);
     Promise.all(
         (talkSubscribers.get(talkId) || [])
         .map(_sub => {
+            console.log('talkSubscribers Ids...', [...talkSubscribers.keys()]);
            return retrieveTalkById(talkId)
                .then(talk => {
                    console.log('_sub...', _sub);
