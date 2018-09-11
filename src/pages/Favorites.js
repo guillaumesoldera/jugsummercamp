@@ -25,7 +25,7 @@ export class Favorites extends PureComponent {
     render() {
         return (
             <Fragment>
-                <Header />
+                <Header title={"Favoris"}/>
                 <div className="content">
                     <div className="favorites-container collections-container">
                         <ul className="collection with-header">

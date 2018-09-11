@@ -48,10 +48,11 @@ class _Header extends Component {
         return (
             <nav>
                 <div className="nav-wrapper">
+                    {this.props.back &&
+                    <div className="back" onClick={this.back}><i className="fa fa-angle-left"/>&nbsp;</div>}
                     <div className="brand-logo right">
-                        {this.props.back &&
-                        <div className="back" onClick={this.back}><i className="fa fa-angle-left"/>&nbsp;</div>}
-                        <span className="brand-title" onClick={this.goToProgram}>JugSummercamp</span>
+                        <span className="brand-title">JugSummercamp</span>
+                        <span className="navigation-title">{this.props.title || ''}</span>
                         <a href={goToUrl} className="location-container">
                             <i className="fa fa-location-arrow location"/>
                         </a>

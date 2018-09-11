@@ -8,6 +8,18 @@ nav {
             padding: 0 25px;
         }
     }
+    .back {
+        font-size: 34px;
+        padding: 0 8px;
+        left: 10px;
+        position: absolute;
+        @media #{$medium-and-up} {
+            display: none;
+        }
+        i {
+            height: auto;
+        }
+    }
     .location-container {
         font-size: 1.8rem;
         margin-left: 18px;
@@ -33,8 +45,15 @@ nav {
             right: 0;
         }
         .brand-title {
+            display: none;
             @media #{$medium-and-up} {
                 display: inline-block
+            }
+        }
+        .navigation-title {
+            display: inline-block;
+            @media #{$medium-and-up} {
+                display: none;
             }
         }
         .jug-logo {

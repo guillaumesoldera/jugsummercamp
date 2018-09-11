@@ -12,6 +12,9 @@
         .collection-header {
             color: $header-title-color;
             background-color: $main-bg-color;
+            @media #{$small-and-down} {
+                display: none;
+            }
         }
         .collection-item {
             background-color: $main-bg-color;

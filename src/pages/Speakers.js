@@ -77,7 +77,7 @@ export class Speakers extends Component {
 
         return (
             <Fragment>
-                <Header back={this.state.currentSpeaker}/>
+                <Header back={this.state.currentSpeaker} title={this.state.currentSpeaker ? 'Speaker' : 'Speakers'}/>
                 <div className="content">
                     <div className={classSet({
                         "collections-container": true,
