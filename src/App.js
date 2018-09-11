@@ -8,10 +8,8 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename='/'>
         <div>
-          <Header />
-          <div className="content">
             <Switch>
               <Route exact path="/" component={Program} />
               <Route exact path="/program" component={Program} />
@@ -21,7 +19,6 @@ class App extends Component {
               <Route path="/favorites" component={Favorites} />
               <Route component={NoMatch} />
             </Switch>
-          </div>
         </div>
       </BrowserRouter>
     );

@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-class _Speaker extends Component {
-
-    back = () => {
-        this.props.history.goBack();
-    } 
+export class Speaker extends Component {
 
     render() {
         const { name, bio, picture } = this.props.speaker;
         return (
             <div className="speaker-container">
                 <div className="speaker-header">
-                    <h4><div className="back" onClick={this.back}><i className="fa fa-angle-left"></i></div>&nbsp;{name}</h4>
+                    <h4>&nbsp;{name}</h4>
                 </div>
                 <div className="speaker-infos">
                     <div className="row">
@@ -30,5 +26,3 @@ class _Speaker extends Component {
         );
     }
 }
-export const Speaker = withRouter(_Speaker)
-

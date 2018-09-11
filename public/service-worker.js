@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/images/logo-114.png","c5df97c0530cbacef66b7f79c6edf663"],["/images/logo-144.png","5095215da5902c878cdb0dc8b3930010"],["/images/logo-57.png","cfa54b42feb902f712c903d4a176a613"],["/images/logo-72.png","9b72bfdf2cf83f44ef65bc17cf7e37ef"],["/images/logo.png","3d328ca4248dc35a06de3438723489b2"],["/index.html","11808f0d12cf5c303bac3f559b56f576"],["/javascripts/bundle/jugSummercamp.js","ff04ac5a9250a20e7c64da92bc32660a"],["/javascripts/bundle/media/3d328ca4248dc35a06de3438723489b2.png","3d328ca4248dc35a06de3438723489b2"],["/javascripts/bundle/media/674f50d287a8c48dc19ba404d20fe713.eot","674f50d287a8c48dc19ba404d20fe713"],["/javascripts/bundle/media/912ec66d7572ff821749319396470bde.svg","912ec66d7572ff821749319396470bde"],["/javascripts/bundle/media/b06871f281fee6b241d60582ae9369b9.ttf","b06871f281fee6b241d60582ae9369b9"]];
+var precacheConfig = [["/images/logo.png","3d328ca4248dc35a06de3438723489b2"],["/index.html","11808f0d12cf5c303bac3f559b56f576"],["/javascripts/bundle/jugSummercamp.js","3eb62677b13108b2c52e26511796426e"],["/javascripts/bundle/media/3d328ca4248dc35a06de3438723489b2.png","3d328ca4248dc35a06de3438723489b2"],["/javascripts/bundle/media/674f50d287a8c48dc19ba404d20fe713.eot","674f50d287a8c48dc19ba404d20fe713"],["/javascripts/bundle/media/912ec66d7572ff821749319396470bde.svg","912ec66d7572ff821749319396470bde"],["/javascripts/bundle/media/b06871f281fee6b241d60582ae9369b9.ttf","b06871f281fee6b241d60582ae9369b9"]];
 var cacheName = 'sw-precache-v3-the-magic-cache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -285,8 +285,9 @@ self.addEventListener('fetch', function(event) {
 
 // Runtime cache configuration, using the sw-toolbox library.
 
-toolbox.router.get(/\/api\/speakers/, toolbox.networkFirst, {});
-toolbox.router.get(/\/api\/talks/, toolbox.networkFirst, {});
+toolbox.router.get(/\/api\/speakers/, toolbox.cacheFirst, {});
+toolbox.router.get(/\/api\/talks/, toolbox.cacheFirst, {});
+toolbox.router.get(/https:\/\/serli-fr.s3.amazonaws.com\/JugSummerCamp\/Speakers2018\/*/, toolbox.cacheFirst, {});
 
 
 

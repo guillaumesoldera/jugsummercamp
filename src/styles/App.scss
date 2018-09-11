@@ -24,6 +24,10 @@
   font-size: large;
 }
 
+.collection-header {
+  padding-left: 31px !important;
+}
+
 .content {
   height: 100%;
   padding-top: 56px; // = navbar height
@@ -47,6 +51,9 @@
     @media #{$large-and-up} {
       display: block;
     }
+  }
+  .row{
+    padding-bottom: 40px;
   }
 }
 .speaker-detail {

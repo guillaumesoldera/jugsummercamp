@@ -66,11 +66,14 @@ let plugins = [
         // offline support
         runtimeCaching: [{
             urlPattern: /\/api\/speakers/,
-            handler: 'networkFirst'
+            handler: 'cacheFirst'
         }, {
             urlPattern: /\/api\/talks/,
-            handler: 'networkFirst'
-        }],
+            handler: 'cacheFirst'
+        }, {
+            urlPattern: /https:\/\/serli-fr.s3.amazonaws.com\/JugSummerCamp\/Speakers2018\/*/,
+            handler: 'cacheFirst'
+        },],
         importScripts: ['../../push-support.js','../../sync-support.js']
     }),
 ];

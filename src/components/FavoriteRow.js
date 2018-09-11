@@ -1,7 +1,18 @@
 import React, {PureComponent} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 
-export class FavoriteRow extends PureComponent {
+class _FavoriteRow extends PureComponent {
+
+    goToSpeaker = (e, id) => {
+        if (e && e.preventDefault) {
+            e.preventDefault()
+        }
+        if (e && e.stopPropagation) {
+            e.stopPropagation();
+        }
+        this.props.history.push(`/speakers/${id}`);
+    }
+
     render() {
         const {title, author, type, room, time} = this.props.talk;
         return (
@@ -13,7 +24,7 @@ export class FavoriteRow extends PureComponent {
                         author.map((a, idx) => {
                             const suffix = idx === author.length - 1 ? '' : ' - ';
                             return (
-                                <NavLink to={`/speakers/${a.id}`} key={a.id}>{a.name}{suffix}</NavLink>
+                                <span onClick={(e) => this.goToSpeaker(e, a.id)} key={a.id}>{a.name}{suffix}</span>
                             )
                         })
                     }</span><br />
@@ -27,3 +38,5 @@ export class FavoriteRow extends PureComponent {
         )
     }
 }
+
+export const FavoriteRow = withRouter(_FavoriteRow);

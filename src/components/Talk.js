@@ -5,7 +5,7 @@ import marked from 'marked';
 import {NavLink, withRouter} from 'react-router-dom';
 import {rate, rating} from '../storages/store';
 
-class _Talk extends Component {
+export class Talk extends Component {
 
     state = {
         rate: undefined
@@ -29,9 +29,7 @@ class _Talk extends Component {
             })
     }
 
-    back = () => {
-        this.props.history.goBack();
-    };
+
 
     onRateChange = (event) => {
         this.setState({
@@ -46,10 +44,7 @@ class _Talk extends Component {
         return (
             <div className="talk-container">
                 <div className="talk-header">
-                    <h4>
-                        <div className="back" to="/" onClick={this.back}><i className="fa fa-angle-left"/>&nbsp;
-                        </div>
-                        {title}</h4>
+                    <h4>{title}</h4>
                 </div>
                 <div className="talk-content">
                     <div dangerouslySetInnerHTML={{__html: marked(description)}}/>
@@ -106,5 +101,3 @@ class _Talk extends Component {
         );
     }
 }
-
-export const Talk = withRouter(_Talk)
