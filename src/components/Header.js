@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import logo from '../images/logo-summercamp.png';
 import '../styles/Header.css'
 import {NavLink, withRouter} from "react-router-dom";
-import {getDevice, Devices} from './utils';
+import {getDevice, Devices, classSet} from './utils';
 
 
 const encanLat = 46.1519906;
@@ -46,6 +46,7 @@ class _Header extends Component {
         }
 
         return (
+            <Fragment>
             <nav>
                 <div className="nav-wrapper">
                     {this.props.back &&
@@ -56,7 +57,7 @@ class _Header extends Component {
                         <a href={goToUrl} className="location-container">
                             <i className="fa fa-location-arrow location"/>
                         </a>
-                        <img src={logo} onClick={this.goToProgram}  className="jug-logo" alt="JugSummercamp"/>
+                        <img src={logo} onClick={this.goToProgram} id="jug" className={classSet({"jug-logo": true, "offline": !navigator.onLine})} alt="JugSummercamp"/>
 
                     </div>
 
@@ -83,6 +84,9 @@ class _Header extends Component {
                     </ul>
                 </div>
             </nav>
+            <div id="offline-message" className="connection-message offline" style={{"opacity": 0}}>Vous êtes hors ligne</div>
+            <div id="online-message" className="connection-message" style={{"opacity": 0}}>Vous êtes en ligne</div>
+            </Fragment>
         );
     }
 }

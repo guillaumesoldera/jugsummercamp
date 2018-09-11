@@ -65,6 +65,9 @@ nav {
             margin-right: -10px;
             width: 50px;
             height: 54px;
+            &.offline {
+                opacity: 0.3;
+            }
         }
         &.right {
           right: 1.5rem !important;
@@ -154,5 +157,23 @@ nav {
                 }
             }
         }
+    }
+}
+.connection-message {
+    opacity: 0;
+    position: absolute;
+    top: 56px;
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background-color: $header-title-color;
+    -webkit-transition: opacity 1s; /* Safari */
+    transition: opacity 1s;
+    &.offline {
+        background-color: $secondary-color;
+    }
+    &.show {
+        opacity: 1 !important;
     }
 }
