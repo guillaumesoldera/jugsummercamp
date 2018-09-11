@@ -93,10 +93,11 @@
 }
 
 .back {
-  padding: 0 20px;
-  margin-left: -20px;
   display: inline;
-  @media #{$large-and-up} {
+  font-size: 34px;
+  padding: 8px 0;
+  margin-left: 5px;
+  @media #{$medium-and-up} {
     display: none;
   }
 }

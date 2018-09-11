@@ -10,12 +10,18 @@ nav {
     .location-container {
         font-size: 1.8rem;
         margin-left: 18px;
+        margin-right: 0px;
+
+        @media #{$small-and-down} {
+          margin-top: 12px;
+        }
     }
-    a.brand-logo {
+    div.brand-logo {
         display: flex;
         top: 3px;
         color: $main-bg-color;
         font-size: 1.8rem;
+
         @media #{$medium-and-up} {
         top: 7px;
         }
@@ -28,16 +34,61 @@ nav {
         .brand-title {
             @media #{$medium-and-up} {
                 display: inline-block
-            }   
+            }
         }
         .jug-logo {
-            margin-left: 8px;
+            margin-right: -10px;
             width: 50px;
             height: 54px;
         }
+        &.right {
+          right: 1.5rem !important;
+        }
     }
+
+    ul#nav-desktop {
+      @media #{$small-and-down} {
+        display:none;
+      }
+      li {
+        a.active {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+      #new-version-desktop {
+        div {
+          padding: 0 15px;
+          cursor: pointer;
+          position: relative;
+          i.fa {
+            display: flex;
+            align-items: center;
+            font-size: 38px;
+          }
+          span.badge {
+            position: absolute;
+            min-width: 21px;
+            padding: 0;
+            left: 4px;
+            border-radius: 12px;
+            top: 5px;
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+
     ul#nav-mobile {
-        @media #{$small-and-down} {
+      font-size: 30px;
+      @media #{$medium-and-up}{
+        display:none;
+      }
+      .tab{
+        font-size: 30px;
+        padding-top: 10px;
+      }
+
+      @media #{$small-and-down} {
             background: $primary-color;
             position: fixed;
             bottom: 0;
@@ -47,12 +98,15 @@ nav {
         }
         li {
             a.active {
-                background-color: rgba(0, 0, 0, 0.1);            
+                background-color: rgba(0, 0, 0, 0.1);
             }
         }
-        #new-version {
+        #new-version-mobile {
             div {
                 padding: 0 15px;
+                @media #{$small-and-down} {
+                  padding : 10px 12px;
+                }
                 cursor: pointer;
                 position: relative;
                 i.fa {
@@ -67,6 +121,9 @@ nav {
                     left: 4px;
                     border-radius: 12px;
                     top: 5px;
+                    @media #{$small-and-down} {
+                      top : 8px;
+                    }
                     margin-left: 0px;
                 }
             }
