@@ -13,6 +13,7 @@ nav {
         padding: 0 8px;
         left: 10px;
         position: absolute;
+        z-index: 30;
         @media #{$medium-and-up} {
             display: none;
         }
@@ -24,7 +25,7 @@ nav {
         font-size: 1.8rem;
         margin-left: 18px;
         margin-right: 0px;
-
+        z-index: 30;
         @media #{$small-and-down} {
           margin-top: 12px;
         }
@@ -39,9 +40,9 @@ nav {
         top: 7px;
         }
         @media #{$small-and-down} {
-            width: auto;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             right: 0;
         }
         .brand-title {
@@ -52,6 +53,10 @@ nav {
         }
         .navigation-title {
             display: inline-block;
+            position: absolute;
+            text-align: center;
+            margin-left: 1.5rem!important;
+            width: 100%;
             @media #{$medium-and-up} {
                 display: none;
             }
