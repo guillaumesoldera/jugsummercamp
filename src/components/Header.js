@@ -23,6 +23,7 @@ class _Header extends Component {
     }
 
     back = () => {
+        // TODO voir si y a qq chose dans l'historique sinon back to program ou speaker
         this.props.history.goBack();
     };
 

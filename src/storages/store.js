@@ -52,4 +52,10 @@ export const all = () => {
 };
 
 const requestSync = (evt) => navigator.serviceWorker.ready
-    .then(swRegistration => swRegistration.sync.register(evt));
+    .then(swRegistration => {
+        if (window.SyncManager) {
+            return swRegistration.sync.register(evt)
+        } else {
+            return Promise.resolve({});
+        }
+    });
