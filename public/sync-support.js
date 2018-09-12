@@ -9,6 +9,7 @@ db.version(1).stores({
 
 self.addEventListener('sync', function (event) {
     console.log("sync Recieved... !!!!!");
+
     if (event.tag == 'favorites_updated') {
         event.waitUntil(serverFavoritesSync());
     }
@@ -18,10 +19,10 @@ self.addEventListener('sync', function (event) {
 });
 
 function serverFavoritesSync() {
-    db.favorites.toArray()
+    return db.favorites.toArray()
         .then(favorites => {
             console.log('favorites', favorites);
-            self.registration.pushManager.getSubscription()
+            return self.registration.pushManager.getSubscription()
                 .then(subscription => {
                     if (subscription) {
                         return fetch("/api/syncFavorites", {
@@ -32,15 +33,21 @@ function serverFavoritesSync() {
                             }
                         }).then(() => {
                             console.log("Favorites Synced...");
+                            return Promise.resolve({});
+                        })
+                        .catch(err => {
+                            console.error('error', err);
+                            return Promise.resolve({});
                         });
                     }
+                    return Promise.resolve({});
                 })
         })
 }
 
 
 function serverRatingsSync() {
-    db.ratings.toArray()
+    return db.ratings.toArray()
         .then(ratings => {
             console.log('ratings', ratings);
             return fetch("/api/syncRatings", {
@@ -51,6 +58,7 @@ function serverRatingsSync() {
                 }
             }).then(() => {
                 console.log("Ratings Synced...");
+                return Promise.resolve({});
             });
         })
 }

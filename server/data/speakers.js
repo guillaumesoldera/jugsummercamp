@@ -187,7 +187,7 @@ var request = require('request');
 
 const worksheetId = "o3nyoop"
 
-const retrieveSpeakers = new Promise((resolve, reject) => {
+const retrieveSpeakers = () => new Promise((resolve, reject) => {
     var options = {
         url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
         headers: {

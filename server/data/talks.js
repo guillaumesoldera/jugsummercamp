@@ -2,7 +2,7 @@ const talks = [
     {
         id: 'developpeurs-etre-un-expert',
         title: "Développeurs, être un expert incompris ou un leader d’opinions ne dépend que de nous",
-        author: ['Freddy Mallet'],
+        author: ['freddy-mallet'],
         type: 'Keynote',
         room: 'Salle Casoar Tadorne',
         time: '09:30 - 10:00',
@@ -11,7 +11,7 @@ const talks = [
     {
         id: 'simplifiez-vous-les-mivro-services',
         title: "Simplifiez vous les micro services avec Otoroshi",
-        author: ['Mathieu Ancelin'],
+        author: ['mathieu-ancelin'],
         type: 'Conférence',
         room: 'Salle Casoar Tadorne',
         time: '10:00-11:00',
@@ -20,7 +20,7 @@ const talks = [
     {
         id: 'monitorer-vos-microservices-java-avec-des-logs',
         title: 'Monitorer vos microservices Java avec des logs, des métriques, des pings et des traces',
-        author: ['David Pilato'],
+        author: ['david-pilato'],
         type: 'Conférence',
         room: 'Salle Chandardon',
         time: '10:00 - 11:00',
@@ -29,7 +29,7 @@ const talks = [
     {
         id: 'kotlin-le-back-du-futur',
         title: 'Kotlin : Le back du futur, le codelab',
-        author: ['Adrien Pessu', 'Gautier de Saint Martin Lacaze'],
+        author: ['adrien-pessu', 'gautier-de-saint-martin-lacaze'],
         type: 'Hands-On Lab',
         room: "Hall de l'espace Encan (rez-de-chaussée)",
         time: '10:00 - 13:00',
@@ -38,7 +38,7 @@ const talks = [
     {
         id: 'gravitee-keycloak',
         title: "L'open-source à la rescousse de mes APIS: comment les sécuriser grâce à Gravitee.io et Keycloak",
-        author: ['David Brassely'],
+        author: ['david-brassely'],
         type: 'Conférence',
         room: 'Salle Chandardon',
         time: '11:00 - 12:00',
@@ -47,7 +47,7 @@ const talks = [
     {
         id: 'typsecript-vs-flow',
         title: 'Typage en JavaScript : TypeScript VS Flow',
-        author: ['Benoît Giraudou', 'Ludovic Gouyou'],
+        author: ['benoit-giraudou', 'ludovic-gouyou'],
         type: 'Conférence',
         room: 'Salle Casoar Tadorne',
         time: '11:00 - 12:00',
@@ -56,7 +56,7 @@ const talks = [
     {
         id: 'vanilla-is-the-new-black',
         title: 'Vanilla is the new black',
-        author: ['Amélie Benoit'],
+        author: ['amelie-benoit'],
         type: 'Quickie',
         room: 'Salle Casoar Tadorne',
         time: '12:00 - 12:15',
@@ -65,7 +65,7 @@ const talks = [
     {
         id: 'les-phantom-types-pour-les-nuls',
         title: "Les 'Phantom Types' pour les nuls",
-        author: ['Jean Baptiste Joffre'],
+        author: ['jean-baptiste-joffre'],
         type: 'Quickie',
         room: 'Salle Chandardon',
         time: '12:00-12:15',
@@ -74,7 +74,7 @@ const talks = [
     {
         id: 'voyage-dans-le-temps-avec-react-suspense',
         title: 'Voyage dans le temps avec React Suspense',
-        author: ['Romain Durand Saint Omer'],
+        author: ['romain-durand-saint-omer'],
         type: 'Quickie',
         room: 'Salle Chandardon',
         time: '12:15 - 12:30',
@@ -83,7 +83,7 @@ const talks = [
     {
         id: 'ux-les-formulaires',
         title: 'UX : Les formulaires',
-        author: ['Bruno Sabot'],
+        author: ['bruno-sabot'],
         type: 'Quickie',
         room: 'Salle Casoar Tadorne',
         time: '12:15 - 12:30',
@@ -92,7 +92,7 @@ const talks = [
     {
         id: 'developper-son-projet-perso-comme-un-pro',
         title: 'Développer son projet perso comme un pro en déploiement continu',
-        author: ['Lionnel Dupouy'],
+        author: ['lionnel-dupouy'],
         type: 'Quickie',
         room: 'Salle Casoar Tadorne',
         time: '13:20 - 13:35',
@@ -101,7 +101,7 @@ const talks = [
     {
         id: 'stream-processing-et-sql',
         title: 'Stream processing et SQL',
-        author: ['Bruno Bonnin'],
+        author: ['bruno-bonnin'],
         type: 'Quickie',
         room: 'Salle Chandardon',
         time: '13:20 - 13:35',
@@ -110,7 +110,7 @@ const talks = [
     {
         id: 'au-pays-des-gophers',
         title: 'Au pays des Gophers (à partir de 3 ans)',
-        author: ['Nicolas Lepage'],
+        author: ['nicolas-lepage'],
         type: 'Quickie',
         room: 'Salle Casoar Tadorne',
         time: '13:35 - 13:50',
@@ -119,7 +119,7 @@ const talks = [
     {
         id: 'la-cncf-et-son-ecosysteme',
         title: 'La CNCF et son écosystème',
-        author: ['Julien Landuré'],
+        author: ['julien-landure'],
         type: 'Quickie',
         room: 'Salle Chandardon',
         time: '13:35 - 13:50',
@@ -128,7 +128,7 @@ const talks = [
     {
         id: 'suivre-les-avions-avec-un-raspberry-pi',
         title: 'Suivre les avions avec un Raspberry Pi',
-        author: ['Guillaume Membré'],
+        author: ['guillaume-membre'],
         type: 'Conférence',
         room: 'Salle Chandardon',
         time: '14:00 - 15:00',
@@ -137,7 +137,7 @@ const talks = [
     {
         id: 'google-container-tools',
         title: 'Google Container Tools : développer efficacement dans un monde de conteneurs',
-        author: ['David Gageot'],
+        author: ['david-gageot'],
         type: 'Conférence',
         room: 'Salle Casoar Tadorne',
         time: '14:00 - 15:00',
@@ -146,7 +146,7 @@ const talks = [
     {
         id: 'redecouvrir-l-univers-connu',
         title: 'Redécouvrir l’univers connu avec le dataset de la NASA',
-        author: ['Horacio Gonzalez', 'Aurélien Hébert', 'Emmanuel Feller', 'Pierre Zemb '],
+        author: ['horacio-gonzalez', 'aurelien-hebert', 'emmanuel-feller', 'pierre-zemb'],
         type: 'Hands-On Lab',
         room: "Hall de l'espace Encan (rez-de-chaussée)",
         time: '14:00 - 17:00',
@@ -155,7 +155,7 @@ const talks = [
     {
         id: 'feature-flipping-avec-izanami',
         title: 'Feature flipping avec Izanami',
-        author: ['Alexandre Delègue'],
+        author: ['alexandre-delegue'],
         type: 'Tools in action',
         room: 'Salle Chandardon',
         time: '15:00 - 15:30',
@@ -164,7 +164,7 @@ const talks = [
     {
         id: 'maroufle-ton-css',
         title: "Maroufle ton CSS avec Flexbox et CSS-grid",
-        author: ['Amélie Benoit'],
+        author: ['amelie-benoit'],
         type: 'Tools in Action',
         room: 'Salle Casoar Tadorne',
         time: '15:00-15:30',
@@ -173,25 +173,25 @@ const talks = [
     {
         id: 'hexagonal-architecture',
         title: 'Hexagonal Architecture for dummies and classical Spring developer',
-        author: ['Youen Chené'],
+        author: ['youen-chene'],
         type: 'Tools in action',
         room: 'Salle Chandardon',
         time: '15:30 - 16:00',
         description: "Le monde DDD aime bien troller le framework Spring. Et moi, après 10 années en tant que développeur Spring, je suis toujours déçu par les présentations de DDD (Domain Driven Development), je trouve que le code arrive toujours trop tard.\n\nCe talk est une initiation au DDD pour des développeurs Java qui veulent contrôler la complexité au cœur du software avec leur framework favori et aller plus loin.\n\nLes exemples de code seront en kotlin.\n\nMots clés : Hexagonal, Java, Spring, Kotlin, DDD"
     },
     {
-        id: 'redpipe',
-        title: "Vous vous souvenez de PlayFramework 1? C'était bien 😍 ... puis plus rien 😭. Réjouissez vous, RedPipe vient de naître 🎉",
-        author: ['Philippe Charriere'],
+        id: 'stabilite-skaffold',
+        title: "Gagner en stabilité avec Skaffold & Container Structure Test",
+        author: ['julien-landure'],
         type: 'Tools in action',
         room: 'Salle Casoar Tadorne',
         time: '15:30 - 16:00',
-        description: "RedPipe est un framework web Java qui repose sur Vert-x, RestEasy et RxJava. RedPipe est très \"opinionated\" (dans le bons sens du terme) et met à disposition même des débutants la possibilité la possibilité de faire aisément des applications Java \"réactives\" .\nCe \"tools in action\" est l'opportunité de vous démontrer que RedPipe est simple à utiliser et que vous pouvez en quelques minutes finalement déjà vous y mettre.\nJe vous montrerez comment initialiser facilement une WebApp Java ainsi qu'une WebApp Kotlin (avec un peu de fonctionnel avec l'excellent framework Arrow).\n\nRedPipe c'est à nouveau un framework qui met Java à la portée de tous. Je suis un grand Fan."
+        description: "Vous développez des images Docker ? Vous les déployez sur K8S ? Venez découvrir deux outils bien pratiques : Skaffold & Container Structure Test L’un permet de valider vos images Docker tandis que l’autre permet de recharger votre cluster Kubernetes rapidement… à chaque sauvegarde par exemple. Venez découvrir l’utilisation conjointe des ces 2 outils pour être plus productif au jour le jour."
     },
     {
         id: 'du-legacy-minitel-au-web',
         title: 'Du Legacy minitel au web',
-        author: ['Jérôme Benois'],
+        author: ['jerome-benois'],
         type: 'Conférence',
         room: 'Salle Chandardon',
         time: '16:15 - 17:15',
@@ -200,7 +200,7 @@ const talks = [
     {
         id: 'les-progressive-web-app',
         title: 'Les Progressive Web App - Quoi ? Où ? Comment ? Pourquoi ?',
-        author: ['Fedy Salah', 'Guillaume Soldera'],
+        author: ['fedy-salah', 'guillaume-soldera'],
         type: 'Conférence',
         room: 'Salle Casoar Tadorne',
         time: '16:15 - 17:15',
@@ -209,20 +209,20 @@ const talks = [
     {
         id: 'graphql-neo4j',
         title: 'Libérer la puissances des graphes avec GraphQl et Neo4j',
-        author: ['Benoît Simard'],
+        author: ['benoit-simard'],
         type: 'Conférence',
         room: 'Salle Chandardon',
         time: '17:15 - 18:15',
         description: "Malgré ce que son nom peut impliquer, GraphQL n'est pas un langage de requête pour les bases de données graphe. C'est une nouvelle façon de construire des API où le modéle de donnée est construit comme un graphe. GraphQL a été appelé \"REST 2.0\" car il offre de nombreux avantages par rapport à REST.\nVenez decouvrir de quoi il en retourne, et surtout de sa puissant lorsqu'il est combiné avec une base de données graphe telle que Neo4j\n\nMots clés : graphql, graphe, neo4j"
     },
     {
-        id: 'kafka-kubernetes',
-        title: "Découvrir par l’exemple : Microservices et Event Sourcing avec Kafka et Kubernetes",
-        author: ['Tugdual Grall'],
-        type: 'Conférence',
+        id: 'redux-saga',
+        title: "Redux Saga - Générateur de bonne humeur",
+        author: ['romain-durand-saint-omer'],
+        type: 'Tools in action',
         room: 'Salle Casoar Tadorne',
-        time: '17:15 - 18:15',
-        description: "Lorsque vous développez des applications vous avez besoin de vous adapter rapidements aux changements (métiers, comme technologiques). Pour cela les développeurs et les “ops” doivent travailler de concert, pour déployer toujours plus rapidement de nouveaux services tout en garantissant la haute disponibilité et la montée en charge des applications.\n\nLes microservices et l’event-sourcing offrent une grande flexibilité aux développeurs; et la containerization par la biais de Kubernetes permet de déployer ces services en toute tranquillité.\n\nCette présentation, en s’appuyant sur des cas d’usage et des démonstration, vous permettra de découvrir:\n\n* Les micro-services et l’event sourcing avec Apache Kafka\n* Les containers avec Docker\n* Le déploiement et management des services avec Kubernetes\n\nSi vous n’utilisez pas encore ces technologies, cette présentation vous donnera une bonne idées des avantages qu’elles apportent aux développeurs, administrateurs systèmes, et donc aux utilisateurs; et je suis certain que vous les adopterez rapidement pour vos prochains développements!\n\n\nMots clés : microservices, kubernetes, cloud, bigdata, kafka, streaming"
+        time: '17:15 - 17:45',
+        description: "Présentation de la librairie Redux Saga qui permet de gérer l’asynchrone côté client de façon élégante.\nEn guise d’introduction, retour sur le concept des générateurs ES6 sur lequel s’appuie Redux Saga, puis tour d’horizon des avantages de la librairie: \n- Simple à comprendre, facile à tester\n- La logique est réunie à un seul endroit\n- Supporte des workflows complexes\n- Une excellente documentation\n\nLe use case d’exemple est celui de l’authentification, un workflow par nature complexe que Redux Saga permet de gérer très simplement.\nPour finir, passage en revue sur l’écriture des tests d’une Saga. Bien que simple à écrire, les tests unitaires d’une saga souffre d’un fort couplage avec l’implémentation dû au fonctionnement inhérent des générateurs ES6. On verra comment on peut s’affranchir de ces contraintes grâce à la librairie `redux-saga-test-plan`."
     }
 ]
 //https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/od6/public/full?alt=json
@@ -231,7 +231,7 @@ const talks = [
 const request = require('request');
 const {speakerById} = require('./speakers')
 const worksheetId = 'od6'
-const retrieveTalks = new Promise((resolve, reject) => {
+const retrieveTalks = () => new Promise((resolve, reject) => {
     var options = {
         url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
         headers: {
@@ -271,8 +271,11 @@ const retrieveTalks = new Promise((resolve, reject) => {
                 .then(completedTalks => {
                     resolve(completedTalks);
                 })
+                .catch(err => {
+                    resolve(talks);
+                })
         } else {
-            reject(error);
+            resolve(talks);
         }
     });
 });

@@ -52,10 +52,3 @@
         }
     }
 }
-.back {
-    padding: 0 20px;
-    margin-left: -20px;
-    @media #{$large-and-up} {
-        display: none;
-    }
-}

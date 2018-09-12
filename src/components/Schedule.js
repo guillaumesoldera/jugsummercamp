@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import "../styles/Schedule.css";
 import "../styles/collections.css";
 import { NavLink, withRouter } from "react-router-dom";
+import { favouritesEnabled } from './utils';
 
 class _ScheduleRow extends Component {
 
@@ -52,8 +53,9 @@ class _ScheduleRow extends Component {
                         -&nbsp;<span className="talk-time"><i className="fa fa-clock-o"/>&nbsp;{time}</span>
                     </p>
 
-                    <span className="secondary-content" onClick={onStarr(talk, rank)}><i
-                        className={`fa ${starred ? ' fa-heart' : 'fa-heart-o'}`}/></span>
+                    { favouritesEnabled && 
+                    (<span className="secondary-content" onClick={onStarr(talk, rank)}><i
+                        className={`fa ${starred ? ' fa-heart' : 'fa-heart-o'}`}/></span>)}
                 </NavLink>
             </li>
         )

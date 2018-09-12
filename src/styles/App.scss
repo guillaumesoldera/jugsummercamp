@@ -24,6 +24,10 @@
   font-size: large;
 }
 
+.collection-header {
+  padding-left: 31px !important;
+}
+
 .content {
   height: 100%;
   padding-top: 56px; // = navbar height
@@ -38,27 +42,30 @@
 .talk-detail {
   .collection.with-header {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
   }
   .program-container {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
+  }
+  .row{
+    padding-bottom: 40px;
   }
 }
 .speaker-detail {
   .collection.with-header {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
   }
   .speakers-container {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
   }

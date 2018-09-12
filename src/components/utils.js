@@ -50,3 +50,5 @@ export function getDevice() {
   }
   return undefined;
 }
+
+export const favouritesEnabled = window.indexedDB
