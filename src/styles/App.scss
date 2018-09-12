@@ -42,13 +42,13 @@
 .talk-detail {
   .collection.with-header {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
   }
   .program-container {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
   }
@@ -59,13 +59,13 @@
 .speaker-detail {
   .collection.with-header {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
   }
   .speakers-container {
     display: none;
-    @media #{$large-and-up} {
+    @media #{$medium-and-up} {
       display: block;
     }
   }

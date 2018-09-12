@@ -87,64 +87,64 @@ export class Speakers extends Component {
                             <li className="collection-header"><h4>Speakers</h4></li>
                         </ul>
                         <div className="row">
-                            <div className="col s12 l7">
+                            <div className="col s12 m7">
                                 <div className="speakers-container">
                                     {
                                         this.state.fetching && (
                                             <Fragment>
                                                 <div className="row">
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
-                                                        <FakeSpeaker />
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col s12 l3">
-                                                        <FakeSpeaker />
-                                                    </div>
-                                                    <div className="col s12 l3">
-                                                        <FakeSpeaker />
-                                                    </div>
-                                                    <div className="col s12 l3">
-                                                        <FakeSpeaker />
-                                                    </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
                                                 </div>
                                                 <div className="row">
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
                                                 </div>
                                                 <div className="row">
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
-                                                    <div className="col s12 l3">
+                                                    <div className="col s12 m3">
+                                                        <FakeSpeaker />
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col s12 m3">
+                                                        <FakeSpeaker />
+                                                    </div>
+                                                    <div className="col s12 m3">
+                                                        <FakeSpeaker />
+                                                    </div>
+                                                    <div className="col s12 m3">
+                                                        <FakeSpeaker />
+                                                    </div>
+                                                    <div className="col s12 m3">
                                                         <FakeSpeaker />
                                                     </div>
                                                 </div>
@@ -158,7 +158,7 @@ export class Speakers extends Component {
                                                 {
                                                     row.map(sp => {
                                                         return (
-                                                            <div key={sp.id} className="col s12 l3">
+                                                            <div key={sp.id} className="col s12 m3">
                                                                 <SpeakerItem speaker={sp}/>
                                                             </div>
                                                         )
@@ -173,7 +173,7 @@ export class Speakers extends Component {
                             {
                                 this.state.currentSpeaker &&
                                 (
-                                    <div className="col s12 l5">
+                                    <div className="col s12 m5">
                                         <Speaker speaker={this.state.currentSpeaker}/>
                                     </div>
                                 )

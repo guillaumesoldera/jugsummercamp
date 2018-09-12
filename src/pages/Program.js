@@ -73,14 +73,14 @@ export class Program extends PureComponent {
                             <li className="collection-header"><h4>Programme</h4></li>
                         </ul>
                         <div className="row">
-                            <div className="col s12 l6">
+                            <div className="col s12 m6">
                                 <div className="program-container">
                                     <Schedule rows={rows} fetching={this.state.fetching}/>
                                 </div>
                             </div>
                             {
                                 this.state.currentTalk && (
-                                    <div className="col s12 l6">
+                                    <div className="col s12 m6">
                                         <Talk talk={this.state.currentTalk}/>
                                     </div>
                                 )
