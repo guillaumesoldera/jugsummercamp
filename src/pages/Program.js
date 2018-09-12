@@ -63,7 +63,7 @@ export class Program extends PureComponent {
         }));
         return (
             <Fragment>
-                <Header back={this.state.currentTalk} title={this.state.currentTalk ? 'Talk' : 'Planning'}/>
+                <Header back={this.state.currentTalk} title={this.state.currentTalk ? 'Talk' : 'Planning'} defaultBackRoute="/program"/>
                 <div className="content">
                     <div className={classSet({
                         "collections-container": true,

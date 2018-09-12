@@ -23,8 +23,14 @@ class _Header extends Component {
     }
 
     back = () => {
-        // TODO voir si y a qq chose dans l'historique sinon back to program ou speaker
-        this.props.history.goBack();
+        // on voit si y a qq chose dans l'historique sinon back to program ou speaker
+        if (this.props.history.length > 1) {
+            this.props.history.goBack();
+        } else {
+            if (this.props.defaultBackRoute) {
+                this.props.history.replace(this.props.defaultBackRoute)
+            }
+        }
     };
 
     goToProgram = (e) => {
