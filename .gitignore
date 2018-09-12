@@ -11,7 +11,7 @@
 
 #generated CSS
 src/**/*.css
-.idea
+.idea/*
 
 # misc
 .DS_Store
@@ -19,6 +19,8 @@ src/**/*.css
 .env.development.local
 .env.test.local
 .env.production.local
+
+cheatSheet.js
 
 npm-debug.log*
 yarn-debug.log*
