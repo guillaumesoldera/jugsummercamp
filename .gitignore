@@ -20,7 +20,7 @@ src/**/*.css
 .env.test.local
 .env.production.local
 
-cheatSheet.js
+cheatSheet.txt
 
 npm-debug.log*
 yarn-debug.log*
