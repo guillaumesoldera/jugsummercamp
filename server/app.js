@@ -42,7 +42,7 @@ app.use(expressValidator());
 app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
 app.get('/api/talks', function (req, res) {
-        retrieveTalks.then(data => {
+        retrieveTalks().then(data => {
             res.setHeader('Content-Type', 'application/json');
             res.json(data)
         })
@@ -50,7 +50,7 @@ app.get('/api/talks', function (req, res) {
 );
 
 app.get('/api/speakers', function (req, res) {
-        retrieveSpeakers.then(data => {
+        retrieveSpeakers().then(data => {
             res.setHeader('Content-Type', 'application/json');
             res.json(data)
         })
