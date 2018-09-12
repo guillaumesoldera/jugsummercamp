@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import logo from '../images/logo-summercamp.png';
 import '../styles/Header.css'
 import {NavLink, withRouter} from "react-router-dom";
-import {getDevice, Devices, classSet} from './utils';
+import {getDevice, Devices, classSet, favouritesEnabled} from './utils';
 
 
 const encanLat = 46.1519906;
@@ -65,7 +65,7 @@ class _Header extends Component {
                     <ul id="nav-mobile" className="left">
                         <li><NavLink exact to="/" isActive={this.onProgramTab}><div className="tab"><i className="fa fa-tasks" aria-hidden="true"/></div></NavLink></li>
                         <li><NavLink to="/speakers"><div className="tab"><i className="fa fa-users" aria-hidden="true"/></div></NavLink></li>
-                        <li><NavLink to="/favorites"><div className="tab"><i className="fa fa-heart" aria-hidden="true"/></div></NavLink></li>
+                        {favouritesEnabled && <li><NavLink to="/favorites"><div className="tab"><i className="fa fa-heart" aria-hidden="true"/></div></NavLink></li>}
                         <li id="new-version-mobile" style={{"display": "none"}}>
                             <div className="tab" onClick={this.reload}><i className="fa fa-repeat"></i><span className="new badge"
                                                                                              data-badge-caption="">1</span>
@@ -76,7 +76,7 @@ class _Header extends Component {
                     <ul id="nav-desktop" className="left">
                         <li><NavLink exact to="/" isActive={this.onProgramTab}>Programme</NavLink></li>
                         <li><NavLink to="/speakers">Speakers</NavLink></li>
-                        <li><NavLink to="/favorites">Favoris</NavLink></li>
+                        {favouritesEnabled && <li><NavLink to="/favorites">Favoris</NavLink></li>}
                         <li id="new-version-desktop" style={{"display": "none"}}>
                             <div onClick={this.reload}><i className="fa fa-repeat"></i><span className="new badge"
                                                                                              data-badge-caption="">1</span>

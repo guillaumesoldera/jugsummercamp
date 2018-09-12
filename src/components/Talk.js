@@ -4,6 +4,7 @@ import "../styles/Talk.css";
 import marked from 'marked';
 import {NavLink, withRouter} from 'react-router-dom';
 import {rate, rating} from '../storages/store';
+import { favouritesEnabled } from './utils';
 
 export class Talk extends Component {
 
@@ -62,7 +63,9 @@ export class Talk extends Component {
                     <span className="talk-room"><i className="fa fa-map-marker"/>&nbsp;{room}</span>&nbsp;-&nbsp;<span
                     className="talk-time"><i className="fa fa-clock-o"/>&nbsp;{time}</span>
                 </div>
-                <div className="talk-rating">
+                {
+                    favouritesEnabled && 
+                (<div className="talk-rating">
                     <h6>Comment vous avez trouvé ce talk ?</h6>
                     <fieldset className="rating">
                         <input type="radio" id="star5" name="rating" value="5" checked={this.state.rate === "5"}
@@ -96,7 +99,7 @@ export class Talk extends Component {
                                checked={this.state.rate === "half"} onChange={this.onRateChange}/><label
                         className="half" htmlFor="starhalf" title="Sucks big time - 0.5 stars"/>
                     </fieldset>
-                </div>
+                </div>)}
             </div>
         );
     }
