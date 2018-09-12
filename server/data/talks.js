@@ -14,7 +14,7 @@ const talks = [
         author: ['mathieu-ancelin'],
         type: 'Conférence',
         room: 'Salle Casoar Tadorne',
-        time: '10:00-11:00',
+        time: '10:00 - 11:00',
         description: "Avec la tendance des microservices, on se retrouve rapidement avec tout un tas de problèmes classique dans ce type d'architecture et il est nécessaire de rapidement faire un choix quand à la manière de les régler. \n\n* comment localiser ses services ?\n* comment retracer les chaines d'appels entre services ?\n* comment savoir ce qui s'est passé sur son cluster de services ?\n* comment assurer la résilience des appels de manière homogène ?\n* comment controler les flux et appliquer des politiques de sécurité globales ?\n* comment tester de nouvelles fonctionnalités avec un flux de production \n* etc \n\nOtoroshi est un reverse proxy moderne avec une fine couche d'api management développé et open sourcé par la MAIF qui propose des solutions à toutes ces problématiques sans pour autant vous imposer une stack technologique, des librairies invasives ou un environnement de run particulier. De plus, son architecture centrée autour d'une API d'administration complète permet d'augmenter simplement les capacités d'Otoroshi. Au cours de cette présentation, nous verrons comment mettre en place Otoroshi et comment tirer parti de toutes les fonctionnalités mise à votre disposition pour vous simplifier la vie et celle de vos microservices."
     },
     {
@@ -167,7 +167,7 @@ const talks = [
         author: ['amelie-benoit'],
         type: 'Tools in Action',
         room: 'Salle Casoar Tadorne',
-        time: '15:00-15:30',
+        time: '15:00 - 15:30',
         description: "Vous galérez encore à centrer vos éléments verticalement ou à avoir une version responsive de la disposition de vos éléments dans une page ?\n\n\nVous utilisez encore des libraries externes comme bootstrap pour le layout ?\n\nArrêtez tout ! Flexbox et CSS-grid sont faits pour vous. Intégrés nativement, Flexbox permet de gérer la disposition des éléments de votre page, tandis que CSS-grid permet de créer des layouts.\n\nCes deux modules vont simplifier votre HTML, votre CSS, et donc votre vie !\n\nMots clés : CSS, Flexbox, CSS-Grid, Web, Front"
     },
     {
@@ -231,8 +231,25 @@ const talks = [
 const request = require('request');
 const {speakerById} = require('./speakers')
 const worksheetId = 'od6'
+
 const retrieveTalks = () => new Promise((resolve, reject) => {
-    resolve(talks);
+    const completedTalksPromises = talks.map(talk => {
+        const richTalk = Object.assign({}, talk);
+        const allPromises = talk.author.map((authorId, idx) => {
+            return speakerById(authorId)
+                .then((author) => {
+                    richTalk.author[idx] = author
+                })
+        })
+        return Promise.all(allPromises)
+            .then(() => {
+                return richTalk;
+            })
+    })
+    Promise.all(completedTalksPromises)
+        .then(completedTalks => {
+            resolve(completedTalks);
+        })
 });
 
 const retrieveTalkById = (talkId) => new Promise((resolve, reject) => {
