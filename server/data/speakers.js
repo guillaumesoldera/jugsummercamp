@@ -54,13 +54,13 @@ const speakers = [
         bio: "David est CTO chez GraviteeSource et core committer Gravitee.io API Platform. A ce titre, il intervient régulièrement sur des missions de consulting, d'expertise technique et d'architecture afin de faciliter l'exposition des APIs, favoriser une démarche OpenAPI, le tout en respectant les préceptes fondamentaux en terme de sécurité."
     },
     {
-        id: 'david-gageot.',
+        id: 'david-gageot',
         picture: "https://serli-fr.s3.amazonaws.com/JugSummerCamp/Speakers2018/david-gageot.jpeg",
         name: "David Gageot",
         bio: "David est Developer Advocate chez Google Cloud. Il travaille sur les Containers Tools. Auparavant, il a participé à l'ouverture du bureau de R&D de Docker, à Paris."
     },
     {
-        id: 'david-pilato.',
+        id: 'david-pilato',
         picture: "https://serli-fr.s3.amazonaws.com/JugSummerCamp/Speakers2018/david-pilato.jpeg",
         name: "David Pilato",
         bio: "Depuis 2013, David Pilato est développeur et évangéliste chez elastic.co, après avoir passé les deux années précédentes à promouvoir le projet open-source Elasticsearch. Il en anime la communauté française et organise des [BBLs](http://brownbaglunch.fr) au sein des entreprises."
@@ -72,13 +72,13 @@ const speakers = [
         bio: "Père de 3 garçons et gardien de nombreux microcontrolleurs, Emmanuel est un développeur passionné depuis bientôt 20 ans. Il a évolué dans de nombreux contextes de banque et assurance en France et en Suisse. KISS est son moto, le sourire des utilisateurs son but, Java/scala et l'iot sont ses armes ... Emmanuel aime partager son savoir et est impliqué dans plusieurs initiatives telles que Devoxx4kids, Scala.io, Devoxx France."
     },
     {
-        id: 'fedy-salah.',
+        id: 'fedy-salah',
         picture: "https://serli-fr.s3.amazonaws.com/JugSummerCamp/Speakers2018/fedy-salah.jpeg",
         name: "Fedy Salah",
         bio: "Ingénieur en Informatique, développeur fullstack expérimenté en JAVA et Web, je fais beaucoup de Javascript et je suis passionné par du Scala et la programmation fonctionnelle en général. Je suis aussi un grand fan de Metal, et je suis aussi un Spartan racer."
     },
     {
-        id: 'freddy-mallet.',
+        id: 'freddy-mallet',
         picture: "https://serli-fr.s3.amazonaws.com/JugSummerCamp/Speakers2018/freddy-mallet.jpeg",
         name: "Freddy Mallet",
         bio: "Freddy est l'un des co-fondateurs de la société SonarSource. Il est particulièrement impliqué dans le développement produit mais est également un acteur majeur de la mise en oeuvre d'une organisation à plat chez SonarSource. Par conséquent Freddy n'a lui même plus aucun titre professionnel chez SonarSource. Il est enfin libre !"
@@ -188,11 +188,68 @@ var request = require('request');
 const worksheetId = "o3nyoop"
 
 const retrieveSpeakers = () => new Promise((resolve, reject) => {
-    resolve(speakers);
+    var options = {
+        url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
+        headers: {
+          'Accept': 'application/json',
+        }
+      };
+
+      request(options, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var result = JSON.parse(body)
+            const allSpeakers = result.feed.entry.map(entry => {
+                return {
+                    id: entry['gsx$id']['$t'],
+                    picture: entry['gsx$picture']['$t'],
+                    talks: entry['gsx$talks']['$t'].split(',').map(value => value.trim()),
+                    name: entry['gsx$name']['$t'],
+                    bio: entry['gsx$bio']['$t'],
+                }
+            })
+            resolve(allSpeakers);
+         } else {
+            reject(error);
+         }
+       });
 })
 
 const speakerById = (speakerId) => {
-   return speakers.find(speaker => speaker.id === speakerId);
+    var options = {
+        url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json&sq=id=${speakerId.trim()}`,
+        headers: {
+          'Accept': 'application/json',
+        }
+      };
+    return new Promise((resolve, reject) => {
+
+        request(options, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var result = JSON.parse(body)
+                if (result && result.feed && result.feed.entry) {
+
+                    const allSpeakers = result.feed.entry.map(entry => {
+                        return {
+                            id: entry['gsx$id']['$t'],
+                            picture: entry['gsx$picture']['$t'],
+                            talks: entry['gsx$talks']['$t'].split(',').map(value => value.trim()),
+                            name: entry['gsx$name']['$t'],
+                            bio: entry['gsx$bio']['$t'],
+                        }
+                    })
+                    resolve(allSpeakers[0]);
+                } else {
+                    //console.log('url', `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json&sq=id=${speakerId.trim()}`)
+                    //console.log('result for speakerId', speakerId, result);
+                    resolve({id: speakerId});
+                    //callback(null, {id: speakerId})
+                }
+            } else {
+                //callback(error, null);
+                reject(error)
+            }
+        });
+    })
 }
 
 

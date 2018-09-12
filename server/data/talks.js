@@ -231,29 +231,77 @@ const talks = [
 const request = require('request');
 const {speakerById} = require('./speakers')
 const worksheetId = 'od6'
-
 const retrieveTalks = () => new Promise((resolve, reject) => {
-    const completedTalksPromises = talks.map(talk => {
-        const richTalk = Object.assign({}, talk);
-        const allPromises = talk.author.map((authorId, idx) => {
-            return speakerById(authorId)
-                .then((author) => {
-                    richTalk.author[idx] = author
-                })
-        })
-        return Promise.all(allPromises)
-            .then(() => {
-                return richTalk;
+    var options = {
+        url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
+        headers: {
+            'Accept': 'application/json',
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var result = JSON.parse(body)
+            const allTalks = result.feed.entry.map(entry => {
+                return {
+                    id: entry['gsx$id']['$t'],
+                    title: entry['gsx$title']['$t'],
+                    author: entry['gsx$author']['$t'].split(',').map(value => value.trim()),
+                    type: entry['gsx$type']['$t'],
+                    room: entry['gsx$room']['$t'],
+                    time: entry['gsx$time']['$t'],
+                    description: entry['gsx$description']['$t'],
+                }
             })
+
+            const completedTalksPromises = allTalks.map(talk => {
+                const richTalk = Object.assign({}, talk);
+                const allPromises = talk.author.map((authorId, idx) => {
+            return speakerById(authorId)
+                        .then((author) => {
+                            richTalk.author[idx] = author
+                })
+                })
+                return Promise.all(allPromises)
+                    .then(() => {
+                        return richTalk;
+                    })
     })
     Promise.all(completedTalksPromises)
         .then(completedTalks => {
             resolve(completedTalks);
         })
+                .catch(err => {
+                    resolve(talks);
+                })
+        } else {
+            resolve(talks);
+        }
+    });
 });
 
 const retrieveTalkById = (talkId) => new Promise((resolve, reject) => {
-    const allTalks = talks.filter(talk => talk.id === talkId);
+    var options = {
+        url: `https://spreadsheets.google.com/feeds/list/1umOR3dXf-v7w5aOWzVgZva4lM68Eo1YJTSpCCldRCBo/${worksheetId}/public/full?alt=json`,
+        headers: {
+            'Accept': 'application/json',
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var result = JSON.parse(body)
+            const allTalks = result.feed.entry.map(entry => {
+                return {
+                    id: entry['gsx$id']['$t'],
+                    title: entry['gsx$title']['$t'],
+                    author: entry['gsx$author']['$t'].split(',').map(value => value.trim()),
+                    type: entry['gsx$type']['$t'],
+                    room: entry['gsx$room']['$t'],
+                    time: entry['gsx$time']['$t'],
+                    description: entry['gsx$description']['$t'],
+                }
+            }).filter(talk => talk.id === talkId);
     if (allTalks.length == 1) {
         const completedTalksPromises = allTalks.map(talk => {
             const richTalk = Object.assign({}, talk);
@@ -275,6 +323,10 @@ const retrieveTalkById = (talkId) => new Promise((resolve, reject) => {
     } else {
         reject('talk not found!');
     }
+        } else {
+            reject(error);
+        }
+    });
 });
 
 
