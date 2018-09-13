@@ -35,14 +35,18 @@ export const starrUnStarr = (talk, rank) => {
         .then(count => {
             if (count == 0) {
                 return db.favorites.add({...talk, rank})
-                    .then(() => requestSync('favorites_updated'))
-                    .then(() => db.favorites.toArray())
+                    .then(() => {
+                        requestSync('favorites_updated');
+                        return db.favorites.toArray();
+                    })
             } else {
                 return db.favorites.where('id')
                     .equals(talk.id)
                     .delete()
-                    .then(() => requestSync('favorites_updated'))
-                    .then(() => db.favorites.toArray())
+                    .then(() => {
+                        requestSync('favorites_updated');
+                        return db.favorites.toArray();
+                    })
             }
         });
 };
