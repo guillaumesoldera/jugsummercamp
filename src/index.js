@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import './styles/materialize.css';
 import 'font-awesome/css/font-awesome.min.css';
-import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
