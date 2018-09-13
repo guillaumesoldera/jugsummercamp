@@ -134,7 +134,7 @@ setInterval(() => {
             retrieveTalkById(talkId)
                 .then(talk => {
                     let period = talk.time.split('-');
-                    if (moment().add(15, 'minutes').isBetween(moment(period[0], "hh:mm"), moment(period[1], "hh:mm"))) {
+                    if (moment().add(2,'hours').add(15, 'minutes').isBetween(moment(period[0], "hh:mm"), moment(period[1], "hh:mm"))) {
                         return Promise.all(talkSubscribers.get(talkId)
                             .filter(_sub => !_sub.notified)
                             .map(_sub => {
