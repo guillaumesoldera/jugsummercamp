@@ -397,7 +397,7 @@ const retrieveTalks = () => new Promise((resolve, reject) => {
 
 const retrieveTalkById = (talkId) => new Promise((resolve, reject) => {
     let allTalks = talks.filter(talk => talk.id === talkId);
-    if (allTalks.length == 1) {
+    if (allTalks.length === 1) {
         resolve(allTalks[0]);
     } else {
         reject('talk not found!');
