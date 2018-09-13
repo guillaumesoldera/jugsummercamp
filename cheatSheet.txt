@@ -3,7 +3,7 @@ Step1
 <link rel="manifest" href="/manifest.json">
 
 {
-  "short_name": "Jug 2018",
+  "short_name": "Jug 2018 demo",
   "name": "JugSummercamp 2018",
   "icons": [
     {
@@ -65,6 +65,82 @@ self.addEventListener('fetch', function(event) {
 });
 
 Step2
+
+
+function registerForNotifications(registration){
+  console.log("Registering Push...");
+  registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array("BFwbGBPX9ggNKmMPMtn8a_eYfMaU28iGv8-fy8PwxoMPwZZQQKaq96RMTCBkdUvVDjgJPZ6wtBeZ2p2i09ZMihY")
+  }).then((subscription) => {
+      console.log("Push Registered...");
+      console.log("Sending Push...");
+      fetch("/api/subscribe", {
+          method: "POST",
+          body: JSON.stringify(subscription),
+          headers: {
+              "content-type": "application/json"
+          }
+      }).then(() => {
+          console.log("Push Sent...");
+      });
+  }).catch(error => {
+      console.error('Error during pushManager subscription:', error);
+  });
+}
+
+function urlBase64ToUint8Array(base64String) {
+    const padding = "=".repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/\-/g, "+").replace(/_/g, "/");
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+}
+
+ navigator.serviceWorker.ready.then(() => {
+           registerForNotifications(registration);
+       })
+
+new SWPrecacheWebpackPlugin({
+    // By default, a cache-busting query parameter is appended to requests
+    // used to populate the caches, to ensure the responses are fresh.
+    // If a URL is already hashed by Webpack, then there is no concern
+    // about it being stale, and the cache-busting can be skipped.
+    cacheId: 'the-magic-cache',
+    filepath: resolve(__dirname, './public/service-worker.js'),
+    minify: false,
+    // For unknown URLs, fallback to the index page
+    navigateFallback: '/',
+    mergeStaticsConfig: true,
+    stripPrefixMulti: {
+        [resolve(__dirname, './public/')]: '',
+    },
+    staticFileGlobs: [
+        resolve(__dirname, './public/index.html'),
+        resolve(__dirname, './public/images/*.png'),
+        resolve(__dirname, './public/images/icons/**.*'),
+        resolve(__dirname, './public/javascripts/*.js'),
+        resolve(__dirname, './public/javascripts/bundle/*.js'),
+        resolve(__dirname, './public/javascripts/bundle/media/**.*'),
+        resolve(__dirname, './public/css/*.css'),
+        resolve(__dirname, './public/css/bundle/*.css'),
+    ],
+    // offline support
+    runtimeCaching: [{
+        urlPattern: /\/api\/speakers/,
+        handler: 'cacheFirst'
+    }, {
+        urlPattern: /\/api\/talks/,
+        handler: 'cacheFirst'
+    }, {
+        urlPattern: /https:\/\/serli-fr.s3.amazonaws.com\/JugSummerCamp\/Speakers2018\/*/,
+        handler: 'cacheFirst'
+    },],
+    importScripts: ['../../push-support.js','../../sync-support.js']
+}),
 
 'push-support.js'
 
