@@ -33,8 +33,6 @@ function registerSW(swUrl) {
       };
       navigator.serviceWorker.ready.then(() => {
           registerForNotifications(registration);
-          registration.sync.register('favorites_updated');
-          registration.sync.register('ratings_updated')
       })
     })
     .catch(error => {
