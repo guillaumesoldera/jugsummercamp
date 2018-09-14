@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const isProd = process.env.MODE === 'PROD';
 
 const cssFilename = '../../css/bundle/[name].css';
+const now =Date.now();
 
 let plugins = [
     new webpack.optimize.ModuleConcatenationPlugin(),
@@ -62,9 +63,14 @@ let plugins = [
             resolve(__dirname, './public/javascripts/bundle/media/**.*'),
             resolve(__dirname, './public/css/*.css'),
             resolve(__dirname, './public/css/bundle/*.css'),
+            resolve(__dirname, `./public/css/bundle/${now}`),
         ],
         // offline support
         runtimeCaching: [{
+                urlPattern: `/${now}/`,
+                handler: 'cacheFirst'
+            },
+            {
             urlPattern: /\/api\/speakers/,
             handler: 'cacheFirst'
         }, {

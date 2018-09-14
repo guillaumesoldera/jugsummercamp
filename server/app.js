@@ -11,6 +11,7 @@ moment.locale('fr');
 const app = express();
 const subscriptions = [];
 let talkSubscribers = new Map();
+const talkAlreadyNotified =[];
 
 const publicVapidKey =
     "BFwbGBPX9ggNKmMPMtn8a_eYfMaU28iGv8-fy8PwxoMPwZZQQKaq96RMTCBkdUvVDjgJPZ6wtBeZ2p2i09ZMihY";
@@ -142,7 +143,7 @@ setInterval(() => {
                     console.log('isBetween', isBetween);
                     if (isBetween) {
                         return Promise.all(talkSubscribers.get(talkId)
-                            .filter(_sub => !_sub.notified)
+                            .filter(_sub => talkAlreadyNotified.find(__=> __===talkId+_sub.endpoint) )
                             .map(_sub => {
                                 const payload = JSON.stringify({
                                     title: 'Ce talk ve démarrer dans moins de 15 minutes',
@@ -150,7 +151,7 @@ setInterval(() => {
                                     icon: '/images/logo.png',
                                     data: {talkId: talk.id}
                                 });
-                                _sub.notified=true;
+                                talkAlreadyNotified.push(talkId+_sub.endpoint);
                                 return webpush
                                     .sendNotification(_sub.subscription, payload)
                                     .catch(err => console.error('err', err));
