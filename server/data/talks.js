@@ -10,7 +10,7 @@ const talks = [{
     }],
     "type": "Keynote",
     "room": "Salle Casoar Tadorne",
-    "time": "07:30 - 10:00",
+    "time": "09:30 - 10:00",
     "description": "Après chaque JUG Summer Camp, vous retrouvez vos collègues la tête pleine de nouvelles idées, de nouvelles technos et de nouvelles pratiques de développement. Serez-vous de ces acteurs capables de transformer cette belle énergie en changement ? Ou serez-vous l’un de ces développeurs incompris et frustrés d’être entourés par autant d’incompétents ?\n\nMots clés : agilité, psychologie, flat organization"
 }, {
     "id": "simplifiez-vous-les-mivro-services",
