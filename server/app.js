@@ -141,10 +141,15 @@ setInterval(() => {
                     console.log('currentHour', currentHour);
                     let isBetween = (currentHour.localeCompare(period[0]) >=0 && currentHour.localeCompare(period[1]) <=0);
                     console.log('isBetween', isBetween);
-                    console.log('talkSubscribers', talkAlreadyNotified);
+                    console.log('talkAlreadyNotified', talkAlreadyNotified);
+                    console.log('talkSubscribers', talkSubscribers);
+
                     if (isBetween) {
                         return Promise.all(talkSubscribers.get(talkId)
-                            .filter(_sub => talkAlreadyNotified.find(__=> __===talkId+_sub.endpoint)!==undefined)
+                            .filter(_sub => {
+                                console.log('talkAlreadyNotified', talkAlreadyNotified.indexOf(talkId+_sub.endpoint)>-1);
+                                return talkAlreadyNotified.indexOf(talkId + _sub.endpoint) > -1;
+                            })
                             .map(_sub => {
 
                                 const payload = JSON.stringify({
